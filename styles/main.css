@@ -23,8 +23,9 @@ body {
 
 html {
   height: 100%;
-  background: rgb(35, 35, 35);
+  background: rgb(45, 45, 45);
   background: linear-gradient(-45deg, rgb(45, 45, 45) 0%, rgb(65, 55, 55) 100%);
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -92,7 +93,6 @@ ul .underline a:hover::after {
 }
 
 .home {
-  margin-top: 10%;
   text-align: center;
   font-size: 200%;
 }
@@ -122,5 +122,15 @@ footer nav ul li img {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
+}
+
+.brick {
+  margin: 25px 0;
+}
+
+h1 {
+  text-align: center;
+  font-weight: normal;
+  font-size: 300%;
 }
