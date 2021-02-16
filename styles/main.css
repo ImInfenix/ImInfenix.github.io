@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
-body{
-  font-family: 'Nunito';
+body {
+  font-family: "Nunito";
 }
 
 h1,
@@ -24,11 +24,7 @@ body {
 html {
   height: 100%;
   background: rgb(35, 35, 35);
-  background: linear-gradient(
-    -45deg,
-    rgb(45, 45, 45) 0%,
-    rgb(65, 55, 55) 100%
-  );
+  background: linear-gradient(-45deg, rgb(45, 45, 45) 0%, rgb(65, 55, 55) 100%);
   background-size: cover;
 }
 
@@ -102,17 +98,16 @@ ul .underline a:hover::after {
 }
 
 footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 10px 0;
   width: 100%;
   text-align: center;
+  vertical-align: middle;
 }
 
 footer nav ul {
   display: inline;
-  padding: 0;
 }
 
 footer nav ul li img {
@@ -120,4 +115,12 @@ footer nav ul li img {
   width: 64px;
   max-width: 100%;
   max-height: 100%;
+  vertical-align: middle;
+}
+
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between
 }
