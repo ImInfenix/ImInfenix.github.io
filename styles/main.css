@@ -134,3 +134,8 @@ h1 {
   font-weight: normal;
   font-size: 300%;
 }
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
