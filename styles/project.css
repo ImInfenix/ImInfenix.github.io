@@ -1,0 +1,28 @@
+.projects {
+  margin: 0 auto;
+  max-width: 80%;
+  text-align: center;
+}
+
+.projects h1 {
+  font-size: 500%;
+}
+
+.projects h2 {
+  margin: 50px auto;
+  font-size: 300%;
+  border-style: solid;
+  border-color: aliceblue;
+  border-radius: 20px;
+  padding: 10px;
+  max-width: 50%;
+}
+
+img.splash {
+  max-width: 80%;
+}
+
+.project .subtitle {
+  font-style: italic;
+  margin: 0;
+}
