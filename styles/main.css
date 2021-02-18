@@ -58,19 +58,19 @@ header nav ul .logo {
   vertical-align: middle;
 }
 
-header nav ul li a {
+header nav li a {
   color: inherit;
   text-decoration: inherit;
 }
 
-ul .underline a {
+header ul a {
   position: relative;
   text-decoration: none;
   color: aliceblue;
   text-transform: uppercase;
 }
 
-ul .underline a::after {
+header ul .underline a::after {
   position: absolute;
   content: "";
   width: 100%;
@@ -83,9 +83,13 @@ ul .underline a::after {
   transform-origin: right;
 }
 
-ul .underline a:hover::after {
+header ul .underline a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+header .current {
+  background-color: rgb(220, 120, 50);
 }
 
 .home {
