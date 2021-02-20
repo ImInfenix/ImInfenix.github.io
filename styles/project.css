@@ -1,6 +1,6 @@
 .projects {
   margin: 0 auto;
-  max-width: 80%;
+  max-width: 70%;
   text-align: center;
 }
 
@@ -9,20 +9,30 @@
 }
 
 .projects h2 {
-  margin: 50px auto;
   font-size: 300%;
+  display: inline-block;
+  margin: 20px auto;
+  padding: 0 5px;
+  border-width: 2px 0;
   border-style: solid;
   border-color: aliceblue;
-  border-radius: 20px;
-  padding: 10px;
-  max-width: 50%;
 }
 
-img.splash {
+.project {
+  margin: 10px 0;
+}
+
+.project .splash {
   max-width: 80%;
 }
 
 .project .subtitle {
   font-style: italic;
   margin: 0;
+}
+
+.project .explanation {
+  font-size: 120%;
+  text-align: justify;
+  text-indent: 1.5em;
 }
