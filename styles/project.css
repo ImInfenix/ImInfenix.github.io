@@ -36,3 +36,17 @@
   text-align: justify;
   text-indent: 1.5em;
 }
+
+.project-links {
+  display: table;
+  width: auto;
+  margin: 0 auto;
+}
+
+.project-links ul {
+  padding: 0;
+}
+
+.project-links li {
+  display: table-cell;
+}
