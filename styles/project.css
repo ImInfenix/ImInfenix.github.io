@@ -23,6 +23,8 @@
 }
 
 .project .splash {
+  display: block;
+  margin: auto;
   max-width: 80%;
 }
 
