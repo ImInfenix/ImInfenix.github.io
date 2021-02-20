@@ -52,3 +52,7 @@
 .project-links li {
   display: table-cell;
 }
+
+.project .credit {
+  text-decoration: underline;
+}
