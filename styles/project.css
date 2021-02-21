@@ -15,7 +15,7 @@
   padding: 0 5px;
   border-width: 2px 0;
   border-style: solid;
-  border-color: aliceblue;
+  border-color: chocolate;
 }
 
 .project {
@@ -54,5 +54,11 @@
 }
 
 .project .credit {
-  text-decoration: underline;
+  color: chocolate;
+}
+
+@media screen and (max-width: 600px) {
+  .projects {
+    max-width: 95%;
+  }
 }
