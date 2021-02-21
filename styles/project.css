@@ -54,6 +54,10 @@
   padding: 0 10px;
 }
 
+.project-links img {
+  vertical-align: middle;
+}
+
 .project .credit {
   color: chocolate;
 }
