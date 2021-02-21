@@ -51,6 +51,7 @@
 
 .project-links li {
   display: table-cell;
+  padding: 0 10px;
 }
 
 .project .credit {
