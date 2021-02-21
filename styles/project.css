@@ -57,7 +57,7 @@
   color: chocolate;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .projects {
     max-width: 95%;
   }
