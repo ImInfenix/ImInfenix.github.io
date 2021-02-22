@@ -140,7 +140,7 @@ a:any-link {
   text-decoration: inherit;
 }
 
-a.box-link {
+.box-link {
   border-width: 1px;
   border-style: solid;
   border-color: rgb(30, 30, 30);
