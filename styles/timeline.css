@@ -132,7 +132,10 @@
   }
 }
 
-.timeline h2 {
+.timeline h2,
+h3 {
+  display: inline-block;
+  vertical-align: middle;
   color: #ff9f55;
 }
 
