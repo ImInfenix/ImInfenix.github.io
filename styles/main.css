@@ -11,7 +11,8 @@ h4,
 h5,
 h6,
 p,
-li {
+li,
+a {
   color: aliceblue;
 }
 
@@ -33,10 +34,11 @@ header {
   background-color: chocolate;
   padding-top: 1px;
   padding-bottom: 1px;
+  display: inline-block;
 }
 
 header nav ul {
-  display: table;
+  display: inline-block;
 }
 
 nav li {
@@ -90,6 +92,16 @@ header ul .underline a:hover::after {
 
 header .current {
   background-color: rgb(220, 120, 50);
+}
+
+header .lang {
+  padding: 5px 5px 5px 0;
+  float: right;
+  font-size: 20px;
+}
+
+header .notCurrentLang {
+  color: rgb(158, 162, 165);
 }
 
 .home {
