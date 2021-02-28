@@ -1,6 +1,5 @@
 .resume {
   margin: 0 auto;
-  min-width: min-content;
 }
 
 .resume a {
@@ -10,6 +9,8 @@
   vertical-align: middle;
 
   font-size: 150%;
+
+  min-width: min-content;
 
   padding: 10px 20px;
 }
