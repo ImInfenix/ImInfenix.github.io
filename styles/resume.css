@@ -1,0 +1,39 @@
+.resume {
+  margin: 0 auto;
+}
+
+.resume a {
+  background-color: chocolate;
+
+  text-align: center;
+  vertical-align: middle;
+
+  font-size: 150%;
+
+  padding: 10px 20px;
+}
+
+.resume a:hover {
+  animation: hover-box-anim 2s linear infinite;
+}
+
+@keyframes hover-box-anim {
+  0% {
+    border: 2px solid rgba(240, 248, 255, 0);
+  }
+  20% {
+    border-top: 2px solid aliceblue;
+  }
+  40% {
+    border-right: 2px solid aliceblue;
+  }
+  60% {
+    border-bottom: 2px solid aliceblue;
+  }
+  80% {
+    border-left: 2px solid aliceblue;
+  }
+  100% {
+    border: 2px solid rgba(240, 248, 255, 0);
+  }
+}
