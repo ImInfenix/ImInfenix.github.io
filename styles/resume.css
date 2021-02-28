@@ -1,5 +1,6 @@
 .resume {
   margin: 0 auto;
+  min-width: min-content;
 }
 
 .resume a {
