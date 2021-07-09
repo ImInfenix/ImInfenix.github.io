@@ -152,3 +152,7 @@ h3 {
 .timeline .content p {
   margin: inherit;
 }
+
+.timeline .line-break {
+  width: 100%;
+}
