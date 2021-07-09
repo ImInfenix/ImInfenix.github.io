@@ -1,3 +1,5 @@
+@import url(main.css);
+
 .projects {
   margin: 0 auto;
   max-width: 70%;
@@ -15,7 +17,7 @@
   padding: 0 5px;
   border-width: 2px 0;
   border-style: solid;
-  border-color: chocolate;
+  border-color: var(--secondary-color);
 }
 
 .project {
@@ -59,7 +61,7 @@
 }
 
 .project .credit {
-  color: chocolate;
+  color: var(--secondary-color);
 }
 
 @media screen and (max-width: 1000px) {

@@ -1,10 +1,12 @@
+@import url(main.css);
+
 .resume {
   display: grid;
   place-items: center;
 }
 
 .resume a {
-  background-color: chocolate;
+  background-color: var(--secondary-color);
 
   text-align: center;
   vertical-align: middle;
@@ -27,16 +29,16 @@
     border: 2px solid rgba(240, 248, 255, 0);
   }
   20% {
-    border-top: 2px solid aliceblue;
+    border-top: 2px solid var(--text-primary);
   }
   40% {
-    border-right: 2px solid aliceblue;
+    border-right: 2px solid var(--text-primary);
   }
   60% {
-    border-bottom: 2px solid aliceblue;
+    border-bottom: 2px solid var(--text-primary);
   }
   80% {
-    border-left: 2px solid aliceblue;
+    border-left: 2px solid var(--text-primary);
   }
   100% {
     border: 2px solid rgba(240, 248, 255, 0);

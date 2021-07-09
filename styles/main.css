@@ -1,7 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
-body {
+:root {
   font-family: "Nunito";
+  --text-primary: aliceblue;
+  --text-inactive: rgb(158, 162, 165);
+
+  --secondary-color: chocolate;
+  --secondary-color-selected: rgb(220, 120, 50);
 }
 
 h1,
@@ -13,7 +18,7 @@ h6,
 p,
 li,
 a {
-  color: aliceblue;
+  color: var(--text-primary);
 }
 
 html,
@@ -31,7 +36,7 @@ html {
 }
 
 header {
-  background-color: chocolate;
+  background-color: var(--secondary-color);
   padding-top: 1px;
   padding-bottom: 1px;
   display: inline-block;
@@ -68,7 +73,7 @@ header nav li a {
 header ul a {
   position: relative;
   text-decoration: none;
-  color: aliceblue;
+  color: var(--text-primary);
   text-transform: uppercase;
 }
 
@@ -79,7 +84,7 @@ header ul .underline a::after {
   height: 3px;
   top: 100%;
   left: 0;
-  background: aliceblue;
+  background: var(--text-primary);
   transition: transform 0.5s;
   transform: scaleX(0);
   transform-origin: right;
@@ -91,7 +96,7 @@ header ul .underline a:hover::after {
 }
 
 header .current {
-  background-color: rgb(220, 120, 50);
+  background-color: var(--secondary-color-selected);
 }
 
 header .lang {
@@ -101,7 +106,7 @@ header .lang {
 }
 
 header .notCurrentLang {
-  color: rgb(158, 162, 165);
+  color: var(--text-inactive);
 }
 
 .home {
