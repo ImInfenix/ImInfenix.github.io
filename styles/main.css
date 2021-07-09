@@ -7,6 +7,9 @@
 
   --secondary-color: chocolate;
   --secondary-color-selected: rgb(220, 120, 50);
+
+  --background-start: rgb(45, 45, 45);
+  --background-second: rgb(65, 55, 55);
 }
 
 h1,
@@ -29,8 +32,12 @@ body {
 
 html {
   height: 100%;
-  background: rgb(45, 45, 45);
-  background: linear-gradient(-45deg, rgb(45, 45, 45) 0%, rgb(65, 55, 55) 100%);
+  background: var(--background-start);
+  background: linear-gradient(
+    -45deg,
+    var(--background-start) 0%,
+    var(--background-second) 100%
+  );
   background-attachment: fixed;
   background-size: cover;
 }
@@ -107,6 +114,18 @@ header .lang {
 
 header .notCurrentLang {
   color: var(--text-inactive);
+}
+
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--background-start);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
 }
 
 .home {
