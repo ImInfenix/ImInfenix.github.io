@@ -7,6 +7,7 @@
 
   --secondary-color: chocolate;
   --secondary-color-selected: rgb(220, 120, 50);
+  --secondary-color-pressed: rgb(245, 167, 111);
 
   --background-start: rgb(45, 45, 45);
   --background-second: rgb(65, 55, 55);
@@ -117,7 +118,7 @@ header .notCurrentLang {
 }
 
 body::-webkit-scrollbar {
-  width: 0.5rem;
+  width: 0.75rem;
 }
 
 body::-webkit-scrollbar-track {
@@ -126,6 +127,14 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background: var(--secondary-color);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color-selected);
+}
+
+body::-webkit-scrollbar-thumb:active {
+  background: var(--secondary-color-pressed);
 }
 
 .home {
