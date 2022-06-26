@@ -200,3 +200,8 @@ a:any-link {
 {
   background-position: left;
 }
+
+.contact
+{
+  padding: 0 .25em;
+}
