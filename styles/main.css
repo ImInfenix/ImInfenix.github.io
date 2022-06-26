@@ -183,10 +183,20 @@ a:any-link {
 }
 
 .box-link {
+  --boxlink-base-background-color: rgb(80, 80, 80);
+  --boxlink-hover-background-color: rgb(100, 100, 100);
+
   border-width: 1px;
   border-style: solid;
   border-radius: 10px;
-  border-color: rgb(30, 30, 30);
-  background-color: rgb(80, 80, 80);
+  border-color: rgb(30,30,30);
+  background: linear-gradient(to left, var(--boxlink-base-background-color) 50%, var(--boxlink-hover-background-color) 50%) right;
+  background-size: 200%;
+  transition: .25s ease-out;
   padding: 0.5em 1em;
+}
+
+.box-link:hover
+{
+  background-position: left;
 }
