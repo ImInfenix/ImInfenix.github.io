@@ -185,7 +185,8 @@ a:any-link {
 .box-link {
   border-width: 1px;
   border-style: solid;
+  border-radius: 10px;
   border-color: rgb(30, 30, 30);
   background-color: rgb(80, 80, 80);
-  padding: 0 5px;
+  padding: 0.5em 1em;
 }
