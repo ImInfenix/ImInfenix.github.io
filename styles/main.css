@@ -187,8 +187,6 @@ a:any-link {
   --boxlink-hover-background-color: rgb(100, 100, 100);
 
   border-width: 1px;
-  border-style: solid;
-  border-radius: 10px;
   border-color: rgb(30,30,30);
   background: linear-gradient(to left, var(--boxlink-base-background-color) 50%, var(--boxlink-hover-background-color) 50%) right;
   background-size: 200%;
