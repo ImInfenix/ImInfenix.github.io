@@ -100,7 +100,7 @@
 }
 
 .content img {
-  max-width: 100%;
+  max-width: 33%;
 }
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
