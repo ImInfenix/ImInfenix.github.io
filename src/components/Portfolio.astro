@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import type { Language } from '../schemas';
+import PortfolioItem from './PortfolioItem.astro';
+import '../styles/project.css';
+
+interface Props { collection: 'projects' | 'games'; language: Language }
+const { collection, language } = Astro.props;
+const items = (await getCollection(collection)).sort((a, b) => a.data.order - b.data.order);
+---
+<div class="projects">
+  {items.map((item) => <PortfolioItem entry={item} language={language} />)}
+</div>

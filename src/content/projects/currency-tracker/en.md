@@ -1,0 +1,1 @@
+Currency tracker is an Add-On for <a href="https://www.elderscrollsonline.com/fr/home" target="_blank" class="credit">The Elder Scrolls Online</a>. This Add-On uses the game API to track specials currencies of the games to warn the player when it reaches a user-defined threshold. The Add-On is written in LUA scripting language.

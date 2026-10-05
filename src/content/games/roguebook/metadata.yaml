@@ -1,0 +1,19 @@
+order: 30
+title: Roguebook (2021)
+media:
+  type: video
+  src: https://www.youtube-nocookie.com/embed/sDHD5Kv_C3U
+subtitle:
+  en: Roguebook's Launch Trailer
+  fr: Trailer de lancement
+links:
+  - type: link
+    href: https://roguebook.net
+    label:
+      en: Game's website
+      fr: Site du jeu
+  - type: link
+    href: https://store.steampowered.com/app/1076200/Roguebook/
+    label:
+      en: Steam page
+      fr: Page Steam

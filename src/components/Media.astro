@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import type { PortfolioEntry } from '../lib/content';
+import type { Language } from '../schemas';
+
+interface Props {
+  media: NonNullable<PortfolioEntry['data']['media']>;
+  caption: string;
+  language: Language;
+}
+const { media, caption, language } = Astro.props;
+---
+<figure class="portfolio-media">
+  {media.type === 'video' ? (
+    <iframe src={media.src} title={caption} width="560" height="315" loading="lazy" allowfullscreen></iframe>
+  ) : typeof media.src === 'string' ? (
+    <img src={media.src} alt={media.alt[language]} loading="lazy" decoding="async" />
+  ) : (
+    <Image src={media.src} alt={media.alt[language]} widths={[320, 640, 960]} sizes="(max-width: 1000px) 76vw, 56vw" loading="lazy" />
+  )}
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+  .portfolio-media {
+    margin: 0;
+  }
+
+  .portfolio-media :global(img) {
+    display: block;
+    max-width: 80%;
+    height: auto;
+    margin: auto;
+  }
+
+  iframe {
+    display: block;
+    width: 560px;
+    max-width: 80%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    margin: auto;
+  }
+
+  figcaption {
+    margin: 0;
+    font-style: italic;
+  }
+</style>

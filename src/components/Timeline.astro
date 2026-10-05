@@ -1,0 +1,48 @@
+---
+import { getEntry, type CollectionEntry } from 'astro:content';
+import type { Language } from '../schemas';
+import { description } from '../lib/content';
+import { assetUrl, localize } from '../lib/site';
+
+interface Props {
+  timeline: CollectionEntry<'timelines'>;
+  language: Language;
+  technologiesLabel: string;
+}
+const { timeline, language, technologiesLabel } = Astro.props;
+const organizations = await Promise.all(timeline.data.organizations.map(async (organization) => ({
+  ...organization,
+  entries: await Promise.all(organization.entries.map(async (reference) => {
+    const entry = await getEntry(reference);
+    if (!entry) throw new Error(`${timeline.filePath} : expérience absente (${reference.id})`);
+    const markdown = await description(`timelines/${entry.id}`, language, Boolean(entry.data.role));
+    return { ...entry, Content: markdown?.Content };
+  })),
+})));
+---
+<section class="brick timeline-section" aria-labelledby={timeline.id}>
+  <h2 id={timeline.id}>{timeline.data.title[language]}</h2>
+  <ol class="timeline">
+    {organizations.map((organization) => (
+      <li class="timeline-card">
+        <div class="timeline-content">
+          {organization.logo && <img class="organization-logo" src={assetUrl(organization.logo)} alt={localize(organization.name, language)} loading="lazy" />}
+          {organization.entries.map(({ data, Content }) => (
+            <div class="timeline-entry">
+              <h3>{localize(data.period, language)}</h3>
+              {data.duration && <p class="duration">{localize(data.duration, language)}</p>}
+              {data.role && <p>{localize(data.role, language)}</p>}
+              {Content && <div class="prose"><Content /></div>}
+            </div>
+          ))}
+          {organization.technologies && (
+            <div class="technologies">
+              <h3>{technologiesLabel}</h3>
+              <p>{organization.technologies.join(' ')}</p>
+            </div>
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>

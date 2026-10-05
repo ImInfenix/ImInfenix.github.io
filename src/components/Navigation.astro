@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Language, Page } from '../schemas';
+import LanguageSelector from './LanguageSelector.astro';
+import { assetUrl, pageUrl } from '../lib/site';
+
+interface Props {
+  site: CollectionEntry<'site'>['data'];
+  language: Language;
+  page: Page;
+}
+const { site, language, page } = Astro.props;
+---
+<header class="site-header">
+  <nav class="primary-nav" aria-label={site.labels.navigation[language]}>
+    <a class="logo" href={pageUrl('index', language)} aria-label={site.navigation.find((item) => item.id === 'index')!.label[language]}>
+      <img src={assetUrl(site.logo)} alt="" width="64" height="64" />
+    </a>
+    <ul class="page-links">
+      {site.navigation.map((item) => (
+        <li>
+          <a href={pageUrl(item.id, language)} aria-current={page === item.id ? 'page' : undefined}>
+            {item.label[language]}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <LanguageSelector language={language} page={page} label={site.labels.languages[language]} />
+  </nav>
+</header>

@@ -1,0 +1,20 @@
+order: 30
+title: Currency tracker (2020 - 2021)
+media:
+  type: image
+  src: https://cdn-eso.mmoui.com/preview/pvw9819.png
+  alt: &a1
+    en: On the right, additional informations about certains currency of the game (owned quantity)
+    fr: Sur la droite, des informations additionnelles pour des monnaies du jeu (quantitée possédée)
+subtitle: *a1
+links:
+  - type: link
+    href: https://github.com/ImInfenix/CurrencyTracker
+    label:
+      en: Github Repository
+      fr: Dépôt Github
+  - type: link
+    href: https://www.esoui.com/downloads/info2838-CurrencyTracker.html
+    label:
+      en: Add-On Page
+      fr: Page de l'Add-On

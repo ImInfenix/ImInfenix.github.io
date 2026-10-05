@@ -1,0 +1,31 @@
+order: 30
+title:
+  en: Other Activity
+  fr: Autre activité
+organizations:
+  - name: TOEIC
+    entries:
+      - activities/toeic
+  - name: ESIR
+    entries:
+      - activities/esir-video
+  - name:
+      en: Cryptography
+      fr: Cryptographie
+    entries:
+      - activities/cryptography
+  - name:
+      en: Seasonal work
+      fr: Emploi saisonnier
+    entries:
+      - activities/seasonal-work
+  - name:
+      en: Bakery
+      fr: Boulangerie
+    entries:
+      - activities/bakery
+  - name:
+      en: First aid
+      fr: Secourisme
+    entries:
+      - activities/first-aid

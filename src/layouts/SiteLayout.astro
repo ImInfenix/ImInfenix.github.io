@@ -1,0 +1,41 @@
+---
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import { validateContent } from '../lib/content';
+import { assetUrl, pageUrl } from '../lib/site';
+import { languages, type Language, type Page } from '../schemas';
+import '../styles/main.css';
+
+interface Props {
+  language: Language;
+  page: Page;
+}
+const { language, page } = Astro.props;
+const site = await validateContent();
+const label = site.navigation.find((item) => item.id === page)!.label[language];
+const title = page === 'index' ? site.title : `${label} | ${site.title}`;
+const canonical = new URL(pageUrl(page, language), Astro.site);
+const structuredData = { '@context': 'https://schema.org/', '@type': 'WebSite', name: site.title, url: Astro.site?.href };
+---
+<!DOCTYPE html>
+<html lang={language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    {languages.map((locale) => (
+      <link rel="alternate" hreflang={locale} href={new URL(pageUrl(page, locale), Astro.site)} />
+    ))}
+    <link rel="icon" href={assetUrl(site.favicon)} type="image/x-icon" />
+    {page === 'index' && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{site.labels.skip[language]}</a>
+    <Navigation site={site} language={language} page={page} />
+    <main id="main-content" class:list={{ 'home-page': page === 'index' }} tabindex="-1">
+      <slot />
+    </main>
+    <Footer site={site} language={language} />
+  </body>
+</html>

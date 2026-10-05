@@ -1,0 +1,20 @@
+order: 100
+title: Pop-Up Run (2019)
+media:
+  type: image
+  src: https://img.itch.zone/aW1nLzIwMzc0NjUucG5n/347x500/FIQSdF.png
+  alt: &a1
+    en: Travelling in the city of the Internet
+    fr: Un voyage dans la ville de l'Internet
+subtitle: *a1
+links:
+  - type: link
+    href: https://tnoucca.itch.io/pop-up-run
+    label:
+      en: Download page
+      fr: Page de téléchargement
+  - type: link
+    href: https://docs.google.com/uc?export=download&id=1HLU11bF3MRzUeVMoATFq-h_DA18xkodi
+    label:
+      en: Optimized build download
+      fr: Téléchargement (Build optimisé)

@@ -1,0 +1,15 @@
+order: 60
+title: When I Grow Up (2021)
+media:
+  type: image
+  src: https://img.itch.zone/aW1nLzQ5Nzg0MDUucG5n/315x250%23c/pMegiZ.png
+  alt: &a1
+    en: The game's character
+    fr: The game's character
+subtitle: *a1
+links:
+  - type: link
+    href: https://infenix.itch.io/when-i-grow-up
+    label:
+      en: Play in browser
+      fr: Jouer dans le navigateur

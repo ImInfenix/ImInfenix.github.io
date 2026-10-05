@@ -1,0 +1,332 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+:root {
+  font-family: "Nunito", system-ui, sans-serif;
+  --text-primary: aliceblue;
+  --text-inactive: rgb(158, 162, 165);
+
+  --secondary-color: chocolate;
+  --secondary-color-selected: rgb(220, 120, 50);
+  --secondary-color-pressed: rgb(245, 167, 111);
+
+  --background-start: rgb(45, 45, 45);
+  --background-second: rgb(65, 55, 55);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+a {
+  color: var(--text-primary);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  background: var(--background-start);
+  background: linear-gradient(
+    -45deg,
+    var(--background-start) 0%,
+    var(--background-second) 100%
+  );
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* The original navigation, adapted to semantic links and a wrapping layout. */
+.site-header {
+  background-color: var(--secondary-color);
+  padding: 1px 0;
+}
+
+.primary-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 16px 40px;
+}
+
+.primary-nav ul,
+.site-footer ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.logo {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
+
+.logo img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.page-links {
+  flex-wrap: wrap;
+}
+
+.page-links li,
+.language-links li {
+  font-size: 30px;
+  padding: 0 20px;
+}
+
+.page-links li:has(a[aria-current="page"]) {
+  background-color: var(--secondary-color-selected);
+}
+
+.primary-nav a:not(.logo) {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.primary-nav a:not([aria-current]):not(.logo)::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 3px;
+  top: 100%;
+  left: 0;
+  background: var(--text-primary);
+  transition: transform .5s;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.primary-nav a:hover::after,
+.primary-nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.primary-nav .language-links {
+  margin-left: auto;
+  padding: 5px 5px 5px 0;
+}
+
+.language-links a:not([aria-current]) {
+  color: var(--text-inactive);
+}
+
+body::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--background-start);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color-selected);
+}
+
+body::-webkit-scrollbar-thumb:active {
+  background: var(--secondary-color-pressed);
+}
+
+.home {
+  text-align: center;
+  font-size: 200%;
+}
+
+.site-footer {
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.site-footer ul {
+  justify-content: center;
+}
+
+.site-footer li {
+  padding: 0 20px;
+}
+
+.site-footer img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  color: var(--text-primary);
+}
+
+main {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.brick {
+  margin: 25px 2em;
+}
+
+h1 {
+  text-align: center;
+  font-weight: normal;
+  font-size: 300%;
+}
+
+a:any-link {
+  text-decoration: inherit;
+}
+
+.box-link {
+  --boxlink-base-background-color: rgb(80, 80, 80);
+  --boxlink-hover-background-color: rgb(100, 100, 100);
+
+  border-width: 1px;
+  border-color: rgb(30,30,30);
+  background: linear-gradient(to left, var(--boxlink-base-background-color) 50%, var(--boxlink-hover-background-color) 50%) right;
+  background-size: 200%;
+  transition: .25s ease-out;
+  padding: 0.5em 1em;
+}
+
+.box-link:hover
+{
+  background-position: left;
+}
+
+.contact
+{
+  padding: 0 .25em;
+  margin: .25em;
+}
+
+/* Preserve the old h2 appearance with the accessible home-page h1. */
+.home h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: .83em 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.prose,
+.contact {
+  overflow-wrap: anywhere;
+}
+
+a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  z-index: 10;
+  top: .5rem;
+  left: .5rem;
+  padding: .75rem;
+  background: var(--background-start);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (max-width: 1000px) {
+  .primary-nav {
+    padding: 16px 20px;
+  }
+
+  .page-links li,
+  .language-links li {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 760px) {
+  .primary-nav {
+    gap: .75rem;
+    padding: .75rem;
+  }
+
+  .logo img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .primary-nav .page-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .page-links li {
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+    padding: .5rem;
+  }
+
+  .language-links li {
+    font-size: 1.2rem;
+    padding: .5rem;
+  }
+
+  .brick {
+    margin: 25px 1rem;
+  }
+
+  .home {
+    font-size: 130%;
+  }
+
+  .home h1 {
+    font-size: 1.4em;
+  }
+
+  .site-footer li {
+    padding: 0 15px;
+  }
+
+  .site-footer img {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

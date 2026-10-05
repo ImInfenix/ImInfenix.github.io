@@ -1,0 +1,15 @@
+order: 110
+title: Snake (2019)
+media:
+  type: image
+  src: ../../../assets/games/Snake.png
+  alt: &a1
+    en: An original production
+    fr: Une production originale
+subtitle: *a1
+links:
+  - type: link
+    href: https://docs.google.com/uc?export=download&id=1sItAd8uw7JXlX9wQ0_XTZ8mQdvUCy2x8
+    label:
+      en: Direct download
+      fr: Téléchargement direct

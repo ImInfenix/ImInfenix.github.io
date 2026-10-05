@@ -1,0 +1,46 @@
+title: Infenix
+favicon: images/logos/favicon.ico
+logo: images/logos/Infenix.png
+navigation:
+  - id: index
+    label:
+      en: Home
+      fr: Accueil
+  - id: games
+    label:
+      en: Games
+      fr: Jeux
+  - id: projects
+    label:
+      en: Projects
+      fr: Projets
+  - id: about
+    label:
+      en: About
+      fr: À propos
+socials:
+  - href: https://github.com/ImInfenix
+    icon: images/logos/GitHub-Mark-Light-64px.png
+    label: GitHub
+  - href: https://infenix.itch.io/
+    icon: images/logos/itchio-textless-white.svg
+    label: itch.io
+  - href: https://www.linkedin.com/in/duncan-sourdin/
+    icon: images/logos/In-White-48.png
+    label: LinkedIn
+labels:
+  navigation:
+    en: Main navigation
+    fr: Navigation principale
+  languages:
+    en: Language
+    fr: Langue
+  socials:
+    en: Social profiles
+    fr: Profils sociaux
+  skip:
+    en: Skip to content
+    fr: Aller au contenu
+  technologies:
+    en: Technologies used
+    fr: Technologies utilisées

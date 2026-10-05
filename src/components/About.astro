@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import type { Language } from '../schemas';
+import { settings } from '../lib/content';
+import Timeline from './Timeline.astro';
+import '../styles/timeline.css';
+
+interface Props { language: Language }
+const { language } = Astro.props;
+const { contact } = await settings('about');
+const site = await settings('site');
+const timelines = (await getCollection('timelines')).sort((a, b) => a.data.order - b.data.order);
+---
+<div class="brick">
+  <div class="home">
+    <p>{contact.prefix[language]} <a class="box-link contact" href={contact.href}>{contact.label}</a></p>
+  </div>
+</div>
+{timelines.map((timeline) => <Timeline timeline={timeline} language={language} technologiesLabel={site.labels.technologies[language]} />)}

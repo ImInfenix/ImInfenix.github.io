@@ -1,0 +1,19 @@
+---
+import type { Language } from '../schemas';
+import { description, settings } from '../lib/content';
+import { assetUrl } from '../lib/site';
+import '../styles/resume.css';
+
+interface Props { language: Language }
+const { language } = Astro.props;
+const data = await settings('home');
+const markdown = await description('home', language);
+const Content = markdown!.Content;
+---
+<div class="brick home">
+  <h1>{data.heading[language]}</h1>
+  <Content />
+</div>
+<div class="brick resume">
+  <a href={assetUrl(data.resume.document[language])}>{data.resume.label[language]}</a>
+</div>

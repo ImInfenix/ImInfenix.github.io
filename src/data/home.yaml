@@ -1,0 +1,10 @@
+heading:
+  en: Hi! I'm Duncan.
+  fr: Bonjour ! Je suis Duncan.
+resume:
+  label:
+    en: Download my resume
+    fr: Télécharger mon CV
+  document:
+    en: documents/Resume_Duncan_Sourdin_NoPersonal.pdf
+    fr: documents/CV_Duncan_Sourdin_NoPersonal.pdf

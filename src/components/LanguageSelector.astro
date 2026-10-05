@@ -1,0 +1,17 @@
+---
+import type { Language, Page } from '../schemas';
+import { languages } from '../schemas';
+import { pageUrl } from '../lib/site';
+
+interface Props { language: Language; page: Page; label: string }
+const { language, page, label } = Astro.props;
+---
+<ul class="language-links" aria-label={label}>
+  {languages.map((locale) => (
+    <li>
+      <a href={pageUrl(page, locale)} lang={locale} hreflang={locale} aria-label={locale === 'en' ? 'English' : 'Français'} aria-current={locale === language ? 'true' : undefined}>
+        {locale.toUpperCase()}
+      </a>
+    </li>
+  ))}
+</ul>

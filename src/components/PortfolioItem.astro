@@ -1,0 +1,28 @@
+---
+import type { Language } from '../schemas';
+import { description, type PortfolioEntry } from '../lib/content';
+import { localize } from '../lib/site';
+import Media from './Media.astro';
+
+interface Props { entry: PortfolioEntry; language: Language }
+const { entry, language } = Astro.props;
+const item = entry.data;
+const markdown = await description(`${entry.collection}/${entry.id}`, language);
+const Content = markdown!.Content;
+---
+<section class="project" id={entry.id} aria-labelledby={`${entry.id}-title`}>
+  <h2 id={`${entry.id}-title`}>{localize(item.title, language)}</h2>
+  {item.media && <Media media={item.media} caption={item.subtitle![language]} language={language} />}
+  <div class="prose"><Content /></div>
+  {item.links.length > 0 && (
+    <ul class="project-links">
+      {item.links.map((link) => (
+        <li>
+          {link.type === 'link'
+            ? <a href={localize(link.href, language)} class="box-link" target="_blank" rel="noopener noreferrer">{link.label[language]}</a>
+            : <img src={link.src} alt={link.alt[language]} loading="lazy" />}
+        </li>
+      ))}
+    </ul>
+  )}
+</section>

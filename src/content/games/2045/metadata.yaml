@@ -1,0 +1,15 @@
+order: 90
+title: 2045 (2020)
+media:
+  type: image
+  src: ../../../assets/games/2045.png
+  alt: &a1
+    en: Escaping the lights to get liberty back
+    fr: Échapper aux lumières pour retrouver sa liberté
+subtitle: *a1
+links:
+  - type: link
+    href: https://docs.google.com/uc?export=download&id=1fbcEARiacpJeW2hnjj5890TgbbVsTpcL
+    label:
+      en: Direct download
+      fr: Téléchargement direct

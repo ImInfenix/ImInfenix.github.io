@@ -10,16 +10,18 @@
     "dev": "node scripts/run.mjs astro dev",
     "check": "node scripts/run.mjs astro check",
     "build": "node scripts/run.mjs astro build",
-    "preview": "node scripts/run.mjs astro preview"
+    "preview": "node scripts/run.mjs astro preview",
+    "content:new": "node scripts/new-content.mjs"
   },
   "dependencies": {
+    "@astrojs/markdown-remark": "7.3.1",
     "astro": "7.3.5",
     "yaml": "2.9.1",
     "zod": "4.6.5"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
-    "parse5": "8.0.1",
+    "@types/node": "24.19.1",
     "typescript": "6.0.3"
   }
 }

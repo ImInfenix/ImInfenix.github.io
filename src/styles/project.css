@@ -1,14 +1,7 @@
-@import url(main.css);
-
 .projects {
   margin: 0 auto;
   max-width: 70%;
   text-align: center;
-}
-
-.projects h1 {
-  font-size: 500%;
-  margin: 1rem;
 }
 
 .projects h2 {
@@ -25,48 +18,55 @@
   margin: 10px 0;
 }
 
-.project .splash {
-  display: block;
-  margin: auto;
-  max-width: 80%;
-}
-
-.project .subtitle {
-  font-style: italic;
-  margin: 0;
-}
-
-.project .explanation {
+.project .prose p {
   font-size: 120%;
   text-align: justify;
   text-indent: 1.5em;
 }
 
 .project-links {
-  display: table;
-  width: auto;
-  margin: 0 auto;
-}
-
-.project-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
   padding: 0;
+  margin: 1em auto;
+  row-gap: 1rem;
 }
 
 .project-links li {
-  display: table-cell;
+  max-width: 100%;
   padding: 0 10px;
+}
+
+.project-links a {
+  display: inline-block;
+  overflow-wrap: anywhere;
 }
 
 .project-links img {
   vertical-align: middle;
 }
 
-.project .credit {
+.project .prose a {
   color: var(--secondary-color);
 }
 
 @media screen and (max-width: 1000px) {
   .projects {
     max-width: 95%;
+  }
+}
+
+@media (max-width: 640px) {
+  .projects h2 {
+    font-size: 200%;
+    overflow-wrap: anywhere;
+  }
+
+  .project .prose p {
+    text-align: left;
+    text-indent: 0;
   }
 }

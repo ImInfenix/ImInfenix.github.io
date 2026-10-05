@@ -1,0 +1,6 @@
+contact:
+  prefix:
+    en: You can contact me at
+    fr: Vous pouvez me contacter à
+  label: contact@infenix.dev
+  href: mailto:contact@infenix.dev?subject=Questions

@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Language } from '../schemas';
+import { assetUrl } from '../lib/site';
+
+interface Props { site: CollectionEntry<'site'>['data']; language: Language }
+const { site, language } = Astro.props;
+---
+<footer class="site-footer">
+  <nav aria-label={site.labels.socials[language]}>
+    <ul>
+      {site.socials.map((social) => (
+        <li>
+          <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
+            <img src={assetUrl(social.icon)} alt="" width="64" height="64" loading="lazy" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</footer>
