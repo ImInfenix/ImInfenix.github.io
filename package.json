@@ -1,0 +1,25 @@
+{
+  "name": "infenix-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "node scripts/run.mjs astro dev",
+    "check": "node scripts/run.mjs astro check",
+    "build": "node scripts/run.mjs astro build",
+    "preview": "node scripts/run.mjs astro preview"
+  },
+  "dependencies": {
+    "astro": "7.3.5",
+    "yaml": "2.9.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "parse5": "8.0.1",
+    "typescript": "6.0.3"
+  }
+}

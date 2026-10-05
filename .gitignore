@@ -1,1 +1,7 @@
-.vscode
+.vscode/
+node_modules/
+dist/
+.astro/
+.npm/
+.tools/
+.test-artifacts/
