@@ -123,8 +123,10 @@
   }
 
   /* Make sure that all arrows are pointing leftwards */
-  .timeline-card::before {
+  .timeline-card:nth-child(odd)::before,
+  .timeline-card:nth-child(even)::before {
     left: 60px;
+    right: auto;
     border: medium solid white;
     border-width: 10px 10px 10px 0;
     border-color: transparent white transparent transparent;
@@ -196,7 +198,8 @@
     padding-left: 55px;
   }
 
-  .timeline-card::before {
+  .timeline-card:nth-child(odd)::before,
+  .timeline-card:nth-child(even)::before {
     left: 45px;
   }
 
