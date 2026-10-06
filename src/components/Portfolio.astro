@@ -1,17 +1,114 @@
 ---
 import { getCollection } from 'astro:content';
 import type { Language } from '../schemas';
-import { settings, siteText } from '../lib/content';
+import { portfolioText, settings, siteText } from '../lib/content';
 import PortfolioItem from './PortfolioItem.astro';
 import '../styles/project.css';
 
 interface Props { collection: 'projects' | 'games'; language: Language }
 const { collection, language } = Astro.props;
 const items = (await getCollection(collection)).sort((a, b) => a.data.order - b.data.order);
+const indexItems = await Promise.all(items.map(async (item) => ({
+  id: item.id,
+  title: (await portfolioText(item, language)).data.title,
+})));
 const site = await settings('site');
 const heading = (await siteText(site.text, language)).data.navigation[collection];
 ---
-<div class="projects">
-  <h1>{heading}</h1>
-  {items.map((item) => <PortfolioItem entry={item} language={language} />)}
+<div class="portfolio-page">
+  <aside class="portfolio-navigation">
+    <nav class="portfolio-index" aria-label={heading}>
+      <p class="portfolio-index-heading">{heading}</p>
+      <ol class="portfolio-index-list">
+        {indexItems.map(({ id, title }) => (
+          <li>
+            <a href={`#${id}`}>{title}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+    <details class="portfolio-mobile-navigation">
+      <summary>
+        <span class="portfolio-mobile-label">{heading}</span>
+        <span class="portfolio-mobile-current">{indexItems[0]?.title}</span>
+        <span class="portfolio-mobile-chevron" aria-hidden="true"></span>
+      </summary>
+      <nav aria-label={heading}>
+        <ol class="portfolio-mobile-list">
+          {indexItems.map(({ id, title }) => <li><a href={`#${id}`}>{title}</a></li>)}
+        </ol>
+      </nav>
+    </details>
+  </aside>
+  <div class="projects">
+    <h1>{heading}</h1>
+    {items.map((item) => <PortfolioItem entry={item} language={language} />)}
+  </div>
 </div>
+
+<script>
+  const page = document.querySelector<HTMLElement>('.portfolio-page');
+  if (page) {
+    const sections = Array.from(page.querySelectorAll<HTMLElement>('.project'));
+    const links = Array.from(page.querySelectorAll<HTMLAnchorElement>('.portfolio-index a'));
+    const list = page.querySelector<HTMLOListElement>('.portfolio-index-list');
+    const mobileMenu = page.querySelector<HTMLDetailsElement>('.portfolio-mobile-navigation');
+    const mobileLinks = Array.from(page.querySelectorAll<HTMLAnchorElement>('.portfolio-mobile-list a'));
+    const mobileCurrent = page.querySelector<HTMLElement>('.portfolio-mobile-current');
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const readingLine = Math.min(window.innerHeight * .38, 280);
+      const found = sections.findIndex((section) => section.getBoundingClientRect().bottom > readingLine);
+      const active = found === -1 ? sections.length - 1 : found;
+      if (active < 0) return;
+
+      links.forEach((link, index) => {
+        if (index === active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      mobileLinks.forEach((link, index) => {
+        if (index === active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      if (mobileCurrent && mobileLinks[active]) mobileCurrent.textContent = mobileLinks[active].textContent;
+
+      if (list && links[active] && list.scrollHeight > list.clientHeight) {
+        const link = links[active];
+        const linkTop = link.getBoundingClientRect().top - list.getBoundingClientRect().top + list.scrollTop;
+        list.scrollTop = linkTop - (list.clientHeight - link.clientHeight) / 2;
+      }
+    };
+
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    window.addEventListener('hashchange', schedule);
+    mobileMenu?.addEventListener('click', (event) => {
+      const link = event.target instanceof Element
+        ? event.target.closest<HTMLAnchorElement>('.portfolio-mobile-list a')
+        : null;
+      if (link) {
+        const target = document.getElementById(link.hash.slice(1));
+        mobileMenu.open = false;
+        requestAnimationFrame(() => target?.focus({ preventScroll: true }));
+      }
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (mobileMenu?.open && event.target instanceof Node && !mobileMenu.contains(event.target)) {
+        mobileMenu.open = false;
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && mobileMenu?.open) {
+        mobileMenu.open = false;
+        mobileMenu.querySelector('summary')?.focus();
+      }
+    });
+    schedule();
+  }
+</script>
