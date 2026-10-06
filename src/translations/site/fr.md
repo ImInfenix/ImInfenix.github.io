@@ -4,6 +4,11 @@ navigation:
   games: Jeux
   projects: Projets
   about: À propos
+descriptions:
+  index: "Développement de jeux vidéo, projets et parcours."
+  games: "Jeux vidéo professionnels et personnels."
+  projects: "Projets de développement logiciel."
+  about: "Parcours professionnel, formation et contact."
 socials:
   github: GitHub
   itch-io: itch.io
