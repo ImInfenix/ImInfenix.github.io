@@ -1,72 +1,104 @@
 .projects {
+  width: min(1160px, calc(100% - 3rem));
   margin: 0 auto;
-  max-width: 70%;
-  text-align: center;
 }
 
-.projects h2 {
-  font-size: 300%;
-  display: inline-block;
-  margin: 20px auto;
-  padding: 0 5px;
-  border-width: 2px 0;
-  border-style: solid;
-  border-color: var(--secondary-color);
+.projects > h1 {
+  margin: 0 0 clamp(2rem, 5vw, 4rem);
 }
 
 .project {
-  margin: 10px 0;
+  margin: 0 0 1.5rem;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  border: 1px solid var(--stroke);
+  border-radius: 1.25rem;
+  background: linear-gradient(145deg, rgba(58, 48, 46, .94), rgba(43, 37, 36, .94));
+  box-shadow: 0 18px 46px rgba(0, 0, 0, .1);
+  scroll-margin-top: 10rem;
+}
+
+.project-with-media {
+  display: grid;
+  grid-template-columns: minmax(0, 43%) minmax(0, 1fr);
+  column-gap: clamp(1.5rem, 3.5vw, 3rem);
+  align-items: start;
+}
+
+.project h2 {
+  grid-column: 1 / -1;
+  margin: 0 0 1.4rem;
+  color: var(--text-primary);
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.project h2::before {
+  content: "";
+  display: inline-block;
+  width: .6rem;
+  height: .6rem;
+  margin: 0 .75rem .25rem 0;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  box-shadow: 0 0 0 5px rgba(245, 155, 96, .1);
+}
+
+.project .prose {
+  min-width: 0;
+  color: #e0d6d1;
+  font-size: 1rem;
 }
 
 .project .prose p {
-  font-size: 120%;
+  margin: 0 0 1rem;
   text-align: justify;
-  text-indent: 1.5em;
+  hyphens: auto;
+}
+
+.project .prose p:last-child {
+  margin-bottom: 0;
 }
 
 .project-links {
   display: flex;
+  grid-column: 1 / -1;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  gap: .7rem;
   list-style: none;
   padding: 0;
-  margin: 1em auto;
-  row-gap: 1rem;
+  margin: 1.5rem 0 0;
 }
 
 .project-links li {
   max-width: 100%;
-  padding: 0 10px;
 }
 
 .project-links a {
-  display: inline-block;
   overflow-wrap: anywhere;
 }
 
 .project-links img {
-  vertical-align: middle;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-.project .prose a {
-  color: var(--secondary-color);
+@media (max-width: 900px) {
+  .project-with-media {
+    display: block;
+  }
+
+  .project .portfolio-media {
+    margin-bottom: 1.5rem;
+  }
 }
 
-@media screen and (max-width: 1000px) {
+@media (max-width: 780px) {
   .projects {
-    max-width: 95%;
-  }
-}
-
-@media (max-width: 640px) {
-  .projects h2 {
-    font-size: 200%;
-    overflow-wrap: anywhere;
-  }
-
-  .project .prose p {
-    text-align: left;
-    text-indent: 0;
+    width: calc(100% - 2rem);
   }
 }

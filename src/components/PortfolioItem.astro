@@ -9,7 +9,7 @@ const item = entry.data;
 const localized = await portfolioText(entry, language);
 const Content = localized.Content;
 ---
-<section class="project" id={entry.id} aria-labelledby={`${entry.id}-title`}>
+<section class:list={['project', { 'project-with-media': !!item.media }]} id={entry.id} aria-labelledby={`${entry.id}-title`}>
   <h2 id={`${entry.id}-title`}>{localized.data.title}</h2>
   {item.media && <Media media={item.media} caption={localized.data.media!.caption} alt={localized.data.media?.alt} />}
   <div class="prose"><Content /></div>

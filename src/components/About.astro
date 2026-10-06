@@ -14,9 +14,7 @@ const localizedAbout = (await aboutText(about.text, language)).data;
 const localizedSite = (await siteText(site.text, language)).data;
 const timelines = (await getCollection('timelines')).sort((a, b) => a.data.order - b.data.order);
 ---
-<div class="brick">
-  <div class="home">
-    <p>{localizedAbout.contact.prefix} <a class="box-link contact" href={contact.href}>{contact.label}</a></p>
-  </div>
-</div>
+<section class="brick about-intro">
+  <p>{localizedAbout.contact.prefix} <a class="contact" href={contact.href}>{contact.label}</a></p>
+</section>
 {timelines.map((timeline) => <Timeline timeline={timeline} language={language} technologiesLabel={localizedSite.labels.technologies} />)}

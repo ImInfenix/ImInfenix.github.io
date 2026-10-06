@@ -1,51 +1,25 @@
 .resume {
-  display: grid;
-  place-items: center;
+  margin-top: 2rem;
 }
 
 .resume a {
-  background-color: var(--secondary-color);
-
-  text-align: center;
-  vertical-align: middle;
-
-  font-size: 150%;
-
-  min-width: min-content;
-
-  padding: 10px 20px;
-
-  border: 2px solid rgba(240, 248, 255, 0);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  min-height: 52px;
+  padding: .8rem 1.3rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: .8rem;
+  color: #241b18;
+  background: var(--secondary-color);
+  font-weight: 800;
+  box-shadow: 0 12px 30px rgba(245, 155, 96, .16);
+  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
-.resume a:hover,
-.resume a:focus-visible {
-  animation: hover-box-anim 2s linear infinite;
-}
-
-@keyframes hover-box-anim {
-  0% {
-    border: 2px solid rgba(240, 248, 255, 0);
-  }
-  20% {
-    border-top: 2px solid var(--text-primary);
-  }
-  40% {
-    border-right: 2px solid var(--text-primary);
-  }
-  60% {
-    border-bottom: 2px solid var(--text-primary);
-  }
-  80% {
-    border-left: 2px solid var(--text-primary);
-  }
-  100% {
-    border: 2px solid rgba(240, 248, 255, 0);
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .resume a {
-    width: 80%;
-  }
+.resume a:hover {
+  background: #ffc194;
+  box-shadow: 0 16px 36px rgba(245, 155, 96, .22);
+  transform: translateY(-2px);
 }

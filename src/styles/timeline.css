@@ -1,213 +1,209 @@
-/*
-    From https://www.w3schools.com/howto/howto_css_timeline.asp
-*/
-
-/* The actual timeline (the vertical ruler) */
-.timeline {
-  position: relative;
-  max-width: 1200px;
-  padding: 0;
-  list-style: none;
-  margin: 0 auto;
+.about-intro {
+  max-width: 760px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--stroke);
+  border-radius: 1.25rem;
+  background: radial-gradient(circle at 50% 0, rgba(245, 155, 96, .16), transparent 70%), var(--surface);
+  text-align: center;
 }
 
-/* The actual timeline (the vertical ruler) */
+.about-intro p {
+  margin: 0;
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  font-weight: 700;
+}
+
+.about-intro .contact {
+  color: var(--secondary-color);
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 155, 96, .5);
+  text-underline-offset: .18em;
+  white-space: nowrap;
+}
+
+.about-intro .contact:hover {
+  color: #ffc194;
+  text-decoration-color: currentColor;
+}
+
+.timeline-section {
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.timeline-section > h2 {
+  margin: 0 0 2rem;
+  font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1080px;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+}
+
 .timeline::after {
   content: "";
   position: absolute;
-  width: 6px;
-  background-color: white;
   top: 0;
   bottom: 0;
-  left: 50%;
-  margin-left: -3px;
+  left: calc(50% - 1px);
+  width: 2px;
+  background: linear-gradient(var(--secondary-color), rgba(245, 155, 96, .1));
 }
 
-/* Container around content */
 .timeline-card {
-  padding: 10px 40px;
   position: relative;
-  background-color: inherit;
   width: 50%;
+  padding: 0 35px;
+  margin-bottom: 1.5rem;
 }
 
-/* The circles on the timeline */
-.timeline-card::after {
-  content: "";
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  right: -17px;
-  background-color: white;
-  border: 4px solid #ff9f55;
-  top: 15px;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-/* Place the container to the left */
 .timeline-card:nth-child(odd) {
   left: 0;
 }
 
-/* Place the container to the right */
 .timeline-card:nth-child(even) {
   left: 50%;
 }
 
-/* Add arrows to the left container (pointing right) */
-.timeline-card:nth-child(odd)::before {
-  content: " ";
-  height: 0;
+.timeline-card::after {
+  content: "";
   position: absolute;
-  top: 22px;
-  width: 0;
   z-index: 1;
-  right: 30px;
-  border: medium solid white;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent white;
+  top: 1.6rem;
+  width: 18px;
+  height: 18px;
+  border: 4px solid var(--secondary-color);
+  border-radius: 50%;
+  background: var(--background-start);
+  box-shadow: 0 0 0 5px rgba(245, 155, 96, .1);
 }
 
-/* Add arrows to the right container (pointing left) */
-.timeline-card:nth-child(even)::before {
-  content: " ";
-  height: 0;
-  position: absolute;
-  top: 22px;
-  width: 0;
-  z-index: 1;
-  left: 30px;
-  border: medium solid white;
-  border-width: 10px 10px 10px 0;
-  border-color: transparent white transparent transparent;
+.timeline-card:nth-child(odd)::after {
+  right: -9px;
 }
 
-/* Fix the circle for containers on the right side */
 .timeline-card:nth-child(even)::after {
-  left: -16px;
+  left: -9px;
 }
 
-/* The actual content */
+.timeline-card::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 1.55rem;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+}
+
+.timeline-card:nth-child(odd)::before {
+  right: 15px;
+  border-left-color: var(--surface);
+}
+
+.timeline-card:nth-child(even)::before {
+  left: 15px;
+  border-right-color: var(--surface);
+}
+
 .timeline-content {
-  padding: 20px 30px;
-  background-color: white;
   position: relative;
-  border-radius: 6px;
-  margin: 0;
+  padding: clamp(1.25rem, 2.5vw, 1.8rem);
+  border: 1px solid var(--stroke);
+  border-radius: 1rem;
+  background: var(--surface);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, .12);
+  overflow-wrap: anywhere;
 }
 
 .organization-logo {
   display: block;
   width: auto;
   height: auto;
-  max-width: 33%;
-  /* The supplied Eugen Systems logo is white on a transparent background. */
-  background: var(--background-start);
+  max-width: 45%;
   padding: .5rem;
-  border-radius: .25rem;
+  margin-bottom: 1.2rem;
+  border-radius: .4rem;
+  background: var(--background-start);
 }
 
-/* Media queries - Responsive timeline on screens less than 600px wide */
-@media screen and (max-width: 1000px) {
-  /* Place the timelime to the left */
-  .timeline::after {
-    left: 31px;
-  }
-
-  /* Full-width containers */
-  .timeline-card {
-    width: 100%;
-    padding-left: 70px;
-    padding-right: 25px;
-  }
-
-  /* Make sure that all arrows are pointing leftwards */
-  .timeline-card:nth-child(odd)::before,
-  .timeline-card:nth-child(even)::before {
-    left: 60px;
-    right: auto;
-    border: medium solid white;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
-  }
-
-  /* Make sure all circles are at the same spot */
-  .timeline-card:nth-child(odd)::after,
-  .timeline-card:nth-child(even)::after {
-    left: 15px;
-  }
-
-  /* Make all right containers behave like the left ones */
-  .timeline-card:nth-child(even) {
-    left: 0%;
-  }
+.timeline-entry + .timeline-entry {
+  padding-top: 1.2rem;
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--stroke);
 }
 
 .timeline-entry h3,
 .technologies h3 {
   display: inline-block;
-  vertical-align: middle;
-  color: #ff9f55;
-}
-
-.timeline p {
-  color: rgb(45, 45, 45);
-  font-size: 110%;
-}
-
-.timeline .timeline-content p {
-  margin: inherit;
-}
-
-.timeline .line-break {
-  width: 100%;
-}
-
-.timeline-section > h2 {
-  text-align: center;
-  font-size: 300%;
-  font-weight: normal;
-  margin: .67em 0;
-}
-
-.timeline-entry h3 {
-  font-size: 1.5em;
-  margin: .83em 0;
-}
-
-.timeline-content {
-  overflow-wrap: anywhere;
+  margin: 0 .5rem .6rem 0;
+  color: var(--secondary-color);
+  font-size: 1.15rem;
+  font-weight: 800;
 }
 
 .timeline-content .duration {
   display: inline-block;
-  font-size: 1.17em;
-  font-weight: bold;
-  color: #ff9f55;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: .95rem;
+  font-weight: 700;
 }
 
-@media (max-width: 640px) {
-  .timeline-section > h2 {
-    font-size: 200%;
+.timeline-content p {
+  margin: 0 0 .7rem;
+  color: #e0d6d1;
+  line-height: 1.65;
+}
+
+.timeline-content .prose p:last-child {
+  margin-bottom: 0;
+}
+
+.technologies {
+  padding-top: 1.2rem;
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--stroke);
+}
+
+.technologies p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .timeline::after {
+    left: 13px;
   }
 
   .timeline-card,
   .timeline-card:nth-child(even) {
-    padding-right: 0;
-    padding-left: 55px;
+    left: 0;
+    width: 100%;
+    padding: 0 0 0 42px;
+  }
+
+  .timeline-card:nth-child(odd)::after,
+  .timeline-card:nth-child(even)::after {
+    left: 5px;
+    right: auto;
   }
 
   .timeline-card:nth-child(odd)::before,
   .timeline-card:nth-child(even)::before {
-    left: 45px;
+    left: 22px;
+    right: auto;
+    border-left-color: transparent;
+    border-right-color: var(--surface);
   }
+}
 
-  .timeline-content {
-    padding: 15px;
-  }
-
+@media (max-width: 640px) {
   .organization-logo {
-    max-width: 60%;
+    max-width: 65%;
   }
 }

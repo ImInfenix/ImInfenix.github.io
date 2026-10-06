@@ -23,27 +23,32 @@ const { media, caption, alt } = Astro.props;
 <style>
   .portfolio-media {
     margin: 0;
+    min-width: 0;
   }
 
   .portfolio-media :global(img) {
     display: block;
-    max-width: 80%;
+    width: 100%;
+    max-width: 100%;
     height: auto;
-    margin: auto;
+    max-height: 360px;
+    object-fit: contain;
+    border-radius: .65rem;
   }
 
   iframe {
     display: block;
-    width: 560px;
-    max-width: 80%;
+    width: 100%;
+    max-width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
     border: 0;
-    margin: auto;
+    border-radius: .65rem;
   }
 
   figcaption {
-    margin: 0;
-    font-style: italic;
+    margin: .6rem 0 0;
+    color: var(--text-muted);
+    font-size: .85rem;
   }
 </style>

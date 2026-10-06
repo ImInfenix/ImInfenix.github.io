@@ -17,6 +17,7 @@ const localized = (await siteText(site.text, language)).data;
   <nav class="primary-nav" aria-label={localized.labels.navigation}>
     <a class="logo" href={pageUrl('index', language)} aria-label={localized.navigation.index}>
       <img src={assetUrl(site.logo)} alt="" width="64" height="64" />
+      <span aria-hidden="true">{site.title}</span>
     </a>
     <ul class="page-links">
       {site.navigation.map((item) => (
