@@ -1,15 +1,9 @@
 order: 80
-title: Color Race (2020)
 media:
   type: image
   src: https://play-lh.googleusercontent.com/eCelWdgoyvkbOSWjHrwte7fl7C-iJnOjRdnSO1jj9YHhO56zMbq1Ofszr66ulf17rg=w720-h310-rw
-  alt: &a1
-    en: Changing self color to get through obstacles
-    fr: Changer sa couleur pour passer les obstacles
-subtitle: *a1
 links:
-  - type: link
+  - id: link-1
+    type: link
     href: https://play.google.com/store/apps/details?id=com.Infenix.ColorRace
-    label:
-      en: Download page
-      fr: Page de téléchargement
+text: games/color-race

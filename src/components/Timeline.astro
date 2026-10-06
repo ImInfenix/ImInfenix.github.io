@@ -1,8 +1,8 @@
 ---
 import { getEntry, type CollectionEntry } from 'astro:content';
 import type { Language } from '../schemas';
-import { description } from '../lib/content';
-import { assetUrl, localize } from '../lib/site';
+import { timelineEntryText, timelineText } from '../lib/content';
+import { assetUrl } from '../lib/site';
 
 interface Props {
   timeline: CollectionEntry<'timelines'>;
@@ -10,28 +10,29 @@ interface Props {
   technologiesLabel: string;
 }
 const { timeline, language, technologiesLabel } = Astro.props;
+const localized = (await timelineText(timeline, language)).data;
 const organizations = await Promise.all(timeline.data.organizations.map(async (organization) => ({
   ...organization,
   entries: await Promise.all(organization.entries.map(async (reference) => {
     const entry = await getEntry(reference);
     if (!entry) throw new Error(`${timeline.filePath} : expérience absente (${reference.id})`);
-    const markdown = await description(`timelines/${entry.id}`, language, Boolean(entry.data.role));
-    return { ...entry, Content: markdown?.Content };
+    const translated = await timelineEntryText(entry, language);
+    return { ...entry, text: translated.data, Content: translated.body?.trim() ? translated.Content : undefined };
   })),
 })));
 ---
 <section class="brick timeline-section" aria-labelledby={timeline.id}>
-  <h2 id={timeline.id}>{timeline.data.title[language]}</h2>
+  <h2 id={timeline.id}>{localized.title}</h2>
   <ol class="timeline">
     {organizations.map((organization) => (
       <li class="timeline-card">
         <div class="timeline-content">
-          {organization.logo && <img class="organization-logo" src={assetUrl(organization.logo)} alt={localize(organization.name, language)} loading="lazy" />}
-          {organization.entries.map(({ data, Content }) => (
+          {organization.logo && <img class="organization-logo" src={assetUrl(organization.logo)} alt={localized.organizations[organization.id]} loading="lazy" />}
+          {organization.entries.map(({ text, Content }) => (
             <div class="timeline-entry">
-              <h3>{localize(data.period, language)}</h3>
-              {data.duration && <p class="duration">{localize(data.duration, language)}</p>}
-              {data.role && <p>{localize(data.role, language)}</p>}
+              <h3>{text.period}</h3>
+              {text.duration && <p class="duration">{text.duration}</p>}
+              {text.role && <p>{text.role}</p>}
               {Content && <div class="prose"><Content /></div>}
             </div>
           ))}

@@ -1,1 +1,0 @@
-Ongoing development on Stellaris

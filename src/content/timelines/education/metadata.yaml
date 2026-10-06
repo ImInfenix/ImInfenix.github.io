@@ -1,17 +1,13 @@
 order: 20
-title:
-  en: Education
-  fr: Formation
 organizations:
-  - name: UQAC / ESIR
-    entries:
+  - entries:
       - education/uqac
       - education/esir
-  - name: Université de Rennes 1
-    entries:
+    id: uqac-esir-1
+  - entries:
       - education/rennes
-  - name:
-      en: High school
-      fr: Lycée
-    entries:
+    id: universite-de-rennes-1-2
+  - entries:
       - education/high-school
+    id: high-school-3
+text: timelines/education

@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Language, Page } from '../schemas';
 import LanguageSelector from './LanguageSelector.astro';
+import { siteText } from '../lib/content';
 import { assetUrl, pageUrl } from '../lib/site';
 
 interface Props {
@@ -10,21 +11,22 @@ interface Props {
   page: Page;
 }
 const { site, language, page } = Astro.props;
+const localized = (await siteText(site.text, language)).data;
 ---
 <header class="site-header">
-  <nav class="primary-nav" aria-label={site.labels.navigation[language]}>
-    <a class="logo" href={pageUrl('index', language)} aria-label={site.navigation.find((item) => item.id === 'index')!.label[language]}>
+  <nav class="primary-nav" aria-label={localized.labels.navigation}>
+    <a class="logo" href={pageUrl('index', language)} aria-label={localized.navigation.index}>
       <img src={assetUrl(site.logo)} alt="" width="64" height="64" />
     </a>
     <ul class="page-links">
       {site.navigation.map((item) => (
         <li>
           <a href={pageUrl(item.id, language)} aria-current={page === item.id ? 'page' : undefined}>
-            {item.label[language]}
+            {localized.navigation[item.id]}
           </a>
         </li>
       ))}
     </ul>
-    <LanguageSelector language={language} page={page} label={site.labels.languages[language]} />
+    <LanguageSelector language={language} page={page} label={localized.labels.languages} />
   </nav>
 </header>

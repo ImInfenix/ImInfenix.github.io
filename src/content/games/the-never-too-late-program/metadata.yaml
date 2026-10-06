@@ -1,20 +1,12 @@
 order: 50
-title: The Never Too Late Program (2021)
 media:
   type: image
   src: https://img.itch.zone/aW1hZ2UvODk0Njk5LzUwODEwOTcucG5n/347x500/nCes%2BY.png
-  alt: &a1
-    en: A factory where the player carries objects
-    fr: Une usine où le joueur transporte des objets
-subtitle: *a1
 links:
-  - type: link
+  - id: link-1
+    type: link
     href: https://github.com/ImInfenix/The-Never-Too-Late-Program
-    label:
-      en: Github Repository
-      fr: Dépôt Github
-  - type: link
+  - id: link-2
+    type: link
     href: https://infenix.itch.io/the-never-too-late-program
-    label:
-      en: Play in browser
-      fr: Jouer dans le navigateur
+text: games/the-never-too-late-program

@@ -1,22 +1,12 @@
 order: 40
-title:
-  en: Procedural Generation Initiation (2019)
-  fr: Initiation à la génération procédurale (2019)
 media:
   type: image
   src: ../../../assets/projects/ProceduralGeneration_2019.png
-  alt: &a1
-    en: A grid map procedurally generated
-    fr: Une carte en grille générée procéduralement
-subtitle: *a1
 links:
-  - type: link
+  - id: link-1
+    type: link
     href: https://docs.google.com/uc?export=download&id=1QUIFoOgfxLMo3PGQBncHW3XMgeOCj1xs
-    label:
-      en: Direct download (Game)
-      fr: Téléchargement direct (Jeu)
-  - type: link
+  - id: link-2
+    type: link
     href: https://docs.google.com/uc?export=download&id=1nqcICxXahL-GJkwMgA5JRHlgdDcpFafC
-    label:
-      en: Direct download (Project)
-      fr: Téléchargement direct (Projet)
+text: projects/procedural-generation

@@ -1,21 +1,11 @@
 order: 10
-title: "Stellaris: Grand Archive (2024)"
 media:
   type: video
   src: https://www.youtube-nocookie.com/embed/aGwAtYBuMQM
-subtitle:
-  en: "Stellaris: Grand Archive Release Trailer"
-  fr: "Trailer de lancement de Stellaris: Grand Archive"
 links:
-  - type: link
+  - id: link-1
+    type: link
     href: https://www.paradoxinteractive.com/games/stellaris/about
-    label:
-      en: Game's website
-      fr: Site du jeu
-  - type: link
-    href:
-      en: https://store.steampowered.com/app/2863080/Stellaris_Grand_Archive/
-      fr: https://store.steampowered.com/app/2534090/Stellaris_Astral_Planes/
-    label:
-      en: Steam page
-      fr: Page Steam
+  - id: link-2
+    type: link
+text: games/stellaris-grand-archive

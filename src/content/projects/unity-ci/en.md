@@ -1,1 +1,0 @@
-This project is an attempt to use Github actions to setup a Unity Project with Continuous Integration. It uses existing actions to setup the workflow to run Unit Tests and then build for multiple platforms.

@@ -1,8 +1,4 @@
-import type { Language, Localized, Page } from '../schemas';
-
-export function localize(value: Localized, language: Language): string {
-  return typeof value === 'string' ? value : value[language];
-}
+import type { Language, Page } from '../schemas';
 
 export function assetUrl(path: string): string {
   if (/^https?:\/\//.test(path)) return path;

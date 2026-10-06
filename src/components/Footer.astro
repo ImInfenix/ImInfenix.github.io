@@ -2,16 +2,18 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Language } from '../schemas';
 import { assetUrl } from '../lib/site';
+import { siteText } from '../lib/content';
 
 interface Props { site: CollectionEntry<'site'>['data']; language: Language }
 const { site, language } = Astro.props;
+const localized = (await siteText(site.text, language)).data;
 ---
 <footer class="site-footer">
-  <nav aria-label={site.labels.socials[language]}>
+  <nav aria-label={localized.labels.socials}>
     <ul>
       {site.socials.map((social) => (
         <li>
-          <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
+          <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={localized.socials[social.id]}>
             <img src={assetUrl(social.icon)} alt="" width="64" height="64" loading="lazy" />
           </a>
         </li>

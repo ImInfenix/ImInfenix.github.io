@@ -1,7 +1,7 @@
 ---
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
-import { validateContent } from '../lib/content';
+import { siteText, validateContent } from '../lib/content';
 import { assetUrl, pageUrl } from '../lib/site';
 import { languages, type Language, type Page } from '../schemas';
 import '../styles/main.css';
@@ -12,7 +12,8 @@ interface Props {
 }
 const { language, page } = Astro.props;
 const site = await validateContent();
-const label = site.navigation.find((item) => item.id === page)!.label[language];
+const localizedSite = (await siteText(site.text, language)).data;
+const label = localizedSite.navigation[page];
 const title = page === 'index' ? site.title : `${label} | ${site.title}`;
 const canonical = new URL(pageUrl(page, language), Astro.site);
 const structuredData = { '@context': 'https://schema.org/', '@type': 'WebSite', name: site.title, url: Astro.site?.href };
@@ -31,7 +32,7 @@ const structuredData = { '@context': 'https://schema.org/', '@type': 'WebSite', 
     {page === 'index' && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')} />}
   </head>
   <body>
-    <a class="skip-link" href="#main-content">{site.labels.skip[language]}</a>
+    <a class="skip-link" href="#main-content">{localizedSite.labels.skip}</a>
     <Navigation site={site} language={language} page={page} />
     <main id="main-content" class:list={{ 'home-page': page === 'index' }} tabindex="-1">
       <slot />

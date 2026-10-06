@@ -1,19 +1,12 @@
 order: 20
-title: "Stellaris: Astral Planes (2023)"
 media:
   type: video
   src: https://www.youtube-nocookie.com/embed/O544CkFV5ck
-subtitle:
-  en: "Stellaris: Astral Planes Release Trailer"
-  fr: "Trailer de lancement de Stellaris: Astral Planes"
 links:
-  - type: link
+  - id: link-1
+    type: link
     href: https://www.paradoxinteractive.com/games/stellaris/about
-    label:
-      en: Game's website
-      fr: Site du jeu
-  - type: link
+  - id: link-2
+    type: link
     href: https://store.steampowered.com/app/2534090/Stellaris_Astral_Planes/
-    label:
-      en: Steam page
-      fr: Page Steam
+text: games/stellaris-astral-planes

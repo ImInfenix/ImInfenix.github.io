@@ -1,22 +1,21 @@
 ---
 import { Image } from 'astro:assets';
 import type { PortfolioEntry } from '../lib/content';
-import type { Language } from '../schemas';
 
 interface Props {
   media: NonNullable<PortfolioEntry['data']['media']>;
   caption: string;
-  language: Language;
+  alt?: string;
 }
-const { media, caption, language } = Astro.props;
+const { media, caption, alt } = Astro.props;
 ---
 <figure class="portfolio-media">
   {media.type === 'video' ? (
     <iframe src={media.src} title={caption} width="560" height="315" loading="lazy" allowfullscreen></iframe>
   ) : typeof media.src === 'string' ? (
-    <img src={media.src} alt={media.alt[language]} loading="lazy" decoding="async" />
+    <img src={media.src} alt={alt!} loading="lazy" decoding="async" />
   ) : (
-    <Image src={media.src} alt={media.alt[language]} widths={[320, 640, 960]} sizes="(max-width: 1000px) 76vw, 56vw" loading="lazy" />
+    <Image src={media.src} alt={alt!} widths={[320, 640, 960]} sizes="(max-width: 1000px) 76vw, 56vw" loading="lazy" />
   )}
   <figcaption>{caption}</figcaption>
 </figure>

@@ -1,1 +1,0 @@
-This project was an attempt to create a procedural map. It is a small game with a simple movement where the goal is to reach the red room, leading to the end. It is then possible to play again, increasing the size of the map. Each room is a square with one to four entries, and all of these rooms are linked together. The red room is one of the map's rooms, randomly selected.

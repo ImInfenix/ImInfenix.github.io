@@ -12,8 +12,9 @@ if (!Object.hasOwn(collections, kind) || !slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.
 
 const base = safePath(`src/content/${collections[kind]}`);
 const destination = safePath(join(base, slug));
-if (existsSync(destination)) {
-  console.error(`Le contenu existe déjà : ${destination}`);
+const translations = safePath(`src/translations/${collections[kind]}/${slug}`);
+if (existsSync(destination) || existsSync(translations)) {
+  console.error(`Le contenu ou ses traductions existent déjà : ${slug}`);
   process.exit(1);
 }
 const orders = readdirSync(base, { withFileTypes: true })
@@ -27,15 +28,22 @@ const orders = readdirSync(base, { withFileTypes: true })
 const order = Math.max(0, ...orders) + 10;
 if (!Number.isSafeInteger(order)) throw new Error('Aucun ordre entier disponible.');
 const files = {
-  'metadata.yaml': stringify({ order, title: { en: slug, fr: slug }, links: [] }, { lineWidth: 0 }),
-  'en.md': 'Describe your project here.\n',
-  'fr.md': 'Décrivez votre projet ici.\n',
+  'metadata.yaml': stringify({ order, text: `${collections[kind]}/${slug}`, links: [] }, { lineWidth: 0 }),
+};
+const localizedFiles = {
+  'en.md': `---\n${stringify({ title: slug }, { lineWidth: 0 })}---\nDescribe your project here.\n`,
+  'fr.md': `---\n${stringify({ title: slug }, { lineWidth: 0 })}---\nDécrivez votre projet ici.\n`,
 };
 
 // An exclusive directory creation prevents overwriting an existing entry.
 mkdirSync(safePath(destination));
+mkdirSync(safePath(translations), { recursive: true });
 for (const [name, contents] of Object.entries(files)) {
   writeFileSync(safePath(join(destination, name)), contents, { flag: 'wx' });
 }
+for (const [name, contents] of Object.entries(localizedFiles)) {
+  writeFileSync(safePath(join(translations, name)), contents, { flag: 'wx' });
+}
 console.log(`Créé : src/content/${collections[kind]}/${slug}/`);
-console.log('Compléter metadata.yaml, en.md et fr.md, puis lancer npm run build.');
+console.log(`Traductions : src/translations/${collections[kind]}/${slug}/`);
+console.log('Compléter les métadonnées et les traductions, puis lancer npm run build.');

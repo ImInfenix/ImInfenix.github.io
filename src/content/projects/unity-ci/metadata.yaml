@@ -1,13 +1,9 @@
 order: 20
-title: Unity CI Test Project (2021)
 links:
-  - type: link
+  - id: link-1
+    type: link
     href: https://github.com/ImInfenix/UnityCI_TestProject
-    label:
-      en: Github Repository
-      fr: Dépôt Github
-  - type: badge
+  - id: badge-2
+    type: badge
     src: https://img.shields.io/github/actions/workflow/status/ImInfenix/UNITYCI_TestProject/main.yml?color=%23D2691E&style=for-the-badge
-    alt:
-      en: Build status
-      fr: État de la compilation
+text: projects/unity-ci

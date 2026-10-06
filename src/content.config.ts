@@ -1,9 +1,8 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { z } from 'zod';
-import { siteSchema, homeSchema, aboutSchema, portfolioSchema, timelineSchema, timelineEntrySchema } from './schemas';
+import { siteSchema, homeSchema, aboutSchema, portfolioSchema, timelineSchema, timelineEntrySchema, siteTranslationSchema, homeTranslationSchema, aboutTranslationSchema, portfolioTranslationSchema, timelineTranslationSchema, timelineEntryTranslationSchema } from './schemas';
 
-// Folder names are the single source of identity; Markdown needs no frontmatter.
+// Metadata identifies entries; each Markdown file contains one complete translation.
 function metadataId({ entry }: { entry: string }) {
   const id = entry.replace(/\/metadata\.yaml$/, '');
   if (!id.split('/').every((part) => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(part))) {
@@ -32,8 +31,11 @@ export const collections = {
     loader: glob({ base: './src/content/timelines', pattern: '*/*/metadata.yaml', generateId: metadataId }),
     schema: timelineEntrySchema,
   }),
-  descriptions: defineCollection({
-    loader: glob({ base: './src/content', pattern: '**/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }),
-    schema: z.object({}).strict(),
-  }),
+  siteTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'site/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: siteTranslationSchema }),
+  homeTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'home/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: homeTranslationSchema }),
+  aboutTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'about/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: aboutTranslationSchema }),
+  projectTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'projects/*/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: portfolioTranslationSchema }),
+  gameTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'games/*/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: portfolioTranslationSchema }),
+  timelineTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'timelines/*/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: timelineTranslationSchema }),
+  timelineEntryTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'timelines/*/*/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: timelineEntryTranslationSchema }),
 };

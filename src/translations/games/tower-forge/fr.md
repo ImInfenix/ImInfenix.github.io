@@ -1,0 +1,12 @@
+---
+title: Tower Forge (2020)
+media:
+  alt: Les aliens essayent d'envahir la forteresse naine
+  caption: Les aliens essayent d'envahir la forteresse naine
+links:
+  link-1:
+    text: Dépôt Github
+  link-2:
+    text: Page de téléchargement
+---
+Tower Forge est un tower defense que j'ai créé en collaboration avec <a href="https://www.artstation.com/tnoucca" target="_blank" class="credit">Johan Poncet</a>. Dans Tower Forge, vous jouez des nains qui defendent leur cité face à une invasion alienne. Ce jeu se distingue d'autres towers defenses en proposant au joueur de construire des tours comme il le désire, en choisissant une combinaison de base/tour pour chacune des tours construites. C'est en effet au joueur de choisir quel élément synergisera bien avec les autres pour s'assurer qu'aucun alien ne passera les défenses. La musique est de <a href="https://www.youtube.com/channel/UCwBJVl_ECknSXtEb9CqC_LQ" target="_blank" class="credit">Pierre Bédue</a>. Ce jeu a été créé en utilisant Unity, Photoshop, Cubase and Audacity.

@@ -1,19 +1,12 @@
 order: 40
-title: Humankind's Fall (2021)
 media:
   type: video
   src: https://www.youtube-nocookie.com/embed/PzOO0h36xIc
-subtitle:
-  en: Humankind's Fall Trailer
-  fr: Trailer du jeu
 links:
-  - type: link
+  - id: link-1
+    type: link
     href: https://github.com/ImInfenix/HumankindsFall
-    label:
-      en: Github Repository
-      fr: Dépôt Github
-  - type: link
+  - id: link-2
+    type: link
     href: https://infenix.itch.io/humankinds-fall
-    label:
-      en: Download page
-      fr: Page de téléchargement
+text: games/humankinds-fall

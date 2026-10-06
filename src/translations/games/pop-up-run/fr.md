@@ -1,0 +1,12 @@
+---
+title: Pop-Up Run (2019)
+media:
+  alt: Un voyage dans la ville de l'Internet
+  caption: Un voyage dans la ville de l'Internet
+links:
+  link-1:
+    text: Page de téléchargement
+  link-2:
+    text: Téléchargement (Build optimisé)
+---
+Pop-Up run était mon projet pour la GDA Jam en 2019 avec une équipe de quatre personnes. Le thème était "No Signal" (Pas de signal). J'étais sur ce projet le seul programmeur avec une équipe de trois étudiants en art digital. Dans Pop-Up run, vous devez trouver votre voie à travers l'Internet dans un gameplay de type runner tout en devant fermer des pubs s'affichant en continu et couvrant l'écran. Mais attention ! Si vous cliquez sur une pub au lieu de la fermer, cela en fera apparaître d'autres. Ce jeu a été créé en utilisant Unity, Photoshop, 3DS Max and Audacity.

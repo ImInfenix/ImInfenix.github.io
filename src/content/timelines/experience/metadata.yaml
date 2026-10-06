@@ -1,17 +1,13 @@
 order: 10
-title:
-  en: Professional experience
-  fr: Expérience Professionelle
 organizations:
-  - name: Eugen Systems
-    logo: images/logos/eugen-systems.png
+  - logo: images/logos/eugen-systems.png
     entries:
       - experience/eugen-systems
     technologies:
       - C++
       - Python
-  - name: Abrakam Entertainment
-    logo: https://www.abrakam.com/img/abrakam-logo-icon.svg
+    id: eugen-systems-1
+  - logo: https://www.abrakam.com/img/abrakam-logo-icon.svg
     entries:
       - experience/abrakam-stellaris
       - experience/abrakam-astral-planes
@@ -22,10 +18,12 @@ organizations:
       - C#
       - C++
       - Python
-  - name: GEVES
-    logo: https://www.geves.fr/wp-content/uploads/LOGO.png
+    id: abrakam-entertainment-2
+  - logo: https://www.geves.fr/wp-content/uploads/LOGO.png
     entries:
       - experience/geves
     technologies:
       - MATLAB
       - Python
+    id: geves-3
+text: timelines/experience
