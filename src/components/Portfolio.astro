@@ -1,13 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
 import type { Language } from '../schemas';
+import { settings, siteText } from '../lib/content';
 import PortfolioItem from './PortfolioItem.astro';
 import '../styles/project.css';
 
 interface Props { collection: 'projects' | 'games'; language: Language }
 const { collection, language } = Astro.props;
 const items = (await getCollection(collection)).sort((a, b) => a.data.order - b.data.order);
+const site = await settings('site');
+const heading = (await siteText(site.text, language)).data.navigation[collection];
 ---
 <div class="projects">
+  <h1>{heading}</h1>
   {items.map((item) => <PortfolioItem entry={item} language={language} />)}
 </div>

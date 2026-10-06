@@ -1,5 +1,5 @@
 ---
-title: Autre activité
+title: Autres activités
 organizations:
   toeic-1: TOEIC
   esir-2: ESIR

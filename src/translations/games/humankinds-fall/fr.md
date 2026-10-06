@@ -4,7 +4,7 @@ media:
   caption: Trailer du jeu
 links:
   link-1:
-    text: Dépôt Github
+    text: Dépôt GitHub
   link-2:
     text: Page de téléchargement
 ---

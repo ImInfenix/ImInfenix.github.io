@@ -5,8 +5,8 @@ media:
   caption: Une usine où le joueur transporte des objets
 links:
   link-1:
-    text: Dépôt Github
+    text: Dépôt GitHub
   link-2:
     text: Jouer dans le navigateur
 ---
-The Never Too late Program a été créé pour la Blackthornprod Jam 3, qui avait pour thème "Less is More" (Moins est Plus). Dans ce jeu, vous travaillez dans une usine où vous devez transporter des objets d'un point à un autre. Chaque jour, vous devez remplir votre quotas, mais attention ! Si vous allez trop vite, vous recevrez de nouvelles tâ;ches ce qui risque de vous empêcher d'atteindre le but. Les sons et musiques ont été créés par <a href="https://www.youtube.com/channel/UCwBJVl_ECknSXtEb9CqC_LQ" target="_blank" class="credit">Pierre Bédue</a>. Ce jeu a été créé en utilisant Unity, Blender, Aseprite, Cubase et Audacity.
+The Never Too Late Program a été créé pour la Blackthornprod Jam 3, qui avait pour thème "Less is More" (Moins est Plus). Dans ce jeu, vous travaillez dans une usine où vous devez transporter des objets d'un point à un autre. Chaque jour, vous devez remplir votre quota, mais attention ! Si vous allez trop vite, vous recevrez de nouvelles tâches ce qui risque de vous empêcher d'atteindre le but. Les sons et musiques ont été créés par <a href="https://www.youtube.com/channel/UCwBJVl_ECknSXtEb9CqC_LQ" target="_blank" class="credit">Pierre Bédue</a>. Ce jeu a été créé en utilisant Unity, Blender, Aseprite, Cubase et Audacity.
