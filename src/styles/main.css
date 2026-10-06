@@ -110,8 +110,7 @@ html {
   transform-origin: right;
 }
 
-.primary-nav a:hover::after,
-.primary-nav a:focus-visible::after {
+.primary-nav a:not([aria-current]):not(.logo):is(:hover, :focus-visible)::after {
   transform: scaleX(1);
   transform-origin: left;
 }
