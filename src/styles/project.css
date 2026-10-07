@@ -358,4 +358,8 @@
   .project {
     scroll-margin-top: 13rem;
   }
+
+  .project.project-with-media .portfolio-media {
+    margin-bottom: 2rem;
+  }
 }
