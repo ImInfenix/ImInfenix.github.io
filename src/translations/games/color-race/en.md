@@ -5,6 +5,8 @@ media:
   caption: Changing self color to get through obstacles
 links:
   link-1:
-    text: Download page
+    text: itch.io page
 ---
 Color Race is an arcade game developed for mobiles where the player has to get through colored obstacles. The only way to survive is to not hit these, unless the player's color is the same as the obstacle. The goal of this game was for me, as a developer, to learn about game publishing on a store and how ads integration works. Color Race was developed using Unity, Photoshop, FL Studio and Audacity.
+
+Color Race is no longer available on the Google Play Store.
