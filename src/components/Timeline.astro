@@ -11,6 +11,7 @@ interface Props {
 }
 const { timeline, language, technologiesLabel } = Astro.props;
 const localized = (await timelineText(timeline, language)).data;
+const showOrganizationNames = timeline.id === 'experience';
 const organizations = await Promise.all(timeline.data.organizations.map(async (organization) => ({
   ...organization,
   entries: await Promise.all(organization.entries.map(async (reference) => {
@@ -27,10 +28,11 @@ const organizations = await Promise.all(timeline.data.organizations.map(async (o
     {organizations.map((organization) => (
       <li class:list={['timeline-card', { 'portfolio-index-target': showOrganizationNames }]} id={`${timeline.id}-${organization.id}`} tabindex={showOrganizationNames ? -1 : undefined}>
         <div class="timeline-content">
-          {organization.logo && <img class="organization-logo" src={assetUrl(organization.logo)} alt={localized.organizations[organization.id]} loading="lazy" />}
+          {showOrganizationNames && <h3 class="organization-name">{localized.organizations[organization.id]}</h3>}
+          {organization.logo && <img class="organization-logo" src={assetUrl(organization.logo)} alt={showOrganizationNames ? '' : localized.organizations[organization.id]} loading="lazy" />}
           {organization.entries.map(({ text, Content }) => (
             <div class="timeline-entry">
-              <h3>{text.period}</h3>
+              {showOrganizationNames ? <h4>{text.period}</h4> : <h3>{text.period}</h3>}
               {text.duration && <p class="duration">{text.duration}</p>}
               {text.role && <p>{text.role}</p>}
               {Content && <div class="prose"><Content /></div>}
