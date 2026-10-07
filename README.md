@@ -16,15 +16,14 @@ Les huit URL historiques restent disponibles : `index.html`, `games.html`, `proj
 
 ## Contenu
 
-Chaque jeu ou projet possède son dossier avec `metadata.yaml`, `en.md` et `fr.md`.
-Les fichiers Markdown ne nécessitent aucun frontmatter.
+Chaque jeu ou projet possède un fichier `metadata.yaml` dans `src/content/` et deux fichiers Markdown traduits dans `src/translations/`. Les titres et autres textes courts sont définis dans le frontmatter des fichiers Markdown ; leur corps contient la description.
 
 ```sh
-npm run content:new -- game mon-jeu
-npm run content:new -- project mon-projet
+npm run content:new -- game mon-jeu 2026
+npm run content:new -- project mon-projet 2026
 ```
 
-La commande crée les trois fichiers sans écraser un contenu existant et attribue un ordre disponible.
+L'année est facultative et vaut l'année courante si elle est omise. La commande crée les trois fichiers sans écraser un contenu existant et attribue un ordre disponible.
 Remplacer les textes proposés avant publication.
 
 - [Modifier le contenu, les médias et le CV](docs/content.md)

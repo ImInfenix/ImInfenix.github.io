@@ -13,27 +13,27 @@ const { contact } = about;
 const site = await settings('site');
 const localizedAbout = (await aboutText(about.text, language)).data;
 const localizedSite = (await siteText(site.text, language)).data;
-const timelines = (await getCollection('timelines')).sort((a, b) => a.data.order - b.data.order);
-const sections = await Promise.all(timelines.map(async (timeline) => ({
+const timelines = (await getCollection('timelines')).sort((first, second) => first.data.order - second.data.order);
+const localizedTimelines = await Promise.all(timelines.map(async (timeline) => ({
   timeline,
-  text: (await timelineText(timeline, language)).data,
+  translation: (await timelineText(timeline, language)).data,
 })));
-const navigationGroups = sections.map(({ timeline, text }) => ({
-  label: text.title,
+const navigationGroups = localizedTimelines.map(({ timeline, translation }) => ({
+  label: translation.title,
   href: timeline.id === 'experience' ? undefined : `#${timeline.id}`,
   entries: (timeline.id === 'experience' ? timeline.data.organizations : []).map((organization) => ({
     id: `${timeline.id}-${organization.id}`,
-    title: text.organizations[organization.id],
+    title: translation.organizations[organization.id],
   })),
 }));
 ---
 <div class="portfolio-page about-page">
   <SectionNavigation heading={localizedSite.navigation.about} groups={navigationGroups} />
-  <div class="projects about-content">
+  <div class="portfolio-content about-content">
     <h1 class="visually-hidden">{localizedSite.navigation.about}</h1>
     <div class="about-header">
       <p class="about-contact">{localizedAbout.contact.prefix} <a href={contact.href}>{contact.label}</a></p>
     </div>
-    {sections.map(({ timeline }) => <Timeline timeline={timeline} language={language} technologiesLabel={localizedSite.labels.technologies} />)}
+    {localizedTimelines.map(({ timeline }) => <Timeline timeline={timeline} language={language} technologiesLabel={localizedSite.labels.technologies} />)}
   </div>
 </div>

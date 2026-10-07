@@ -1,6 +1,19 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { siteSchema, homeSchema, aboutSchema, portfolioSchema, timelineSchema, timelineEntrySchema, siteTranslationSchema, homeTranslationSchema, aboutTranslationSchema, portfolioTranslationSchema, timelineTranslationSchema, timelineEntryTranslationSchema } from './schemas';
+import {
+  siteSchema,
+  homeSchema,
+  aboutSchema,
+  portfolioSchema,
+  timelineSchema,
+  timelineEntrySchema,
+  siteTranslationSchema,
+  homeTranslationSchema,
+  aboutTranslationSchema,
+  portfolioTranslationSchema,
+  timelineTranslationSchema,
+  timelineEntryTranslationSchema,
+} from './schemas';
 
 // Metadata identifies entries; each Markdown file contains one complete translation.
 function metadataId({ entry }: { entry: string }) {
@@ -9,6 +22,14 @@ function metadataId({ entry }: { entry: string }) {
     throw new Error(`Identifiant de dossier invalide : ${entry}`);
   }
   return id;
+}
+
+function translationLoader(pattern: string) {
+  return glob({
+    base: './src/translations',
+    pattern,
+    generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+  });
 }
 
 export const collections = {
@@ -31,11 +52,11 @@ export const collections = {
     loader: glob({ base: './src/content/timelines', pattern: '*/*/metadata.yaml', generateId: metadataId }),
     schema: timelineEntrySchema,
   }),
-  siteTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'site/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: siteTranslationSchema }),
-  homeTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'home/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: homeTranslationSchema }),
-  aboutTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'about/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: aboutTranslationSchema }),
-  projectTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'projects/*/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: portfolioTranslationSchema }),
-  gameTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'games/*/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: portfolioTranslationSchema }),
-  timelineTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'timelines/*/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: timelineTranslationSchema }),
-  timelineEntryTranslations: defineCollection({ loader: glob({ base: './src/translations', pattern: 'timelines/*/*/*.md', generateId: ({ entry }) => entry.replace(/\.md$/, '') }), schema: timelineEntryTranslationSchema }),
+  siteTranslations: defineCollection({ loader: translationLoader('site/*.md'), schema: siteTranslationSchema }),
+  homeTranslations: defineCollection({ loader: translationLoader('home/*.md'), schema: homeTranslationSchema }),
+  aboutTranslations: defineCollection({ loader: translationLoader('about/*.md'), schema: aboutTranslationSchema }),
+  projectTranslations: defineCollection({ loader: translationLoader('projects/*/*.md'), schema: portfolioTranslationSchema }),
+  gameTranslations: defineCollection({ loader: translationLoader('games/*/*.md'), schema: portfolioTranslationSchema }),
+  timelineTranslations: defineCollection({ loader: translationLoader('timelines/*/*.md'), schema: timelineTranslationSchema }),
+  timelineEntryTranslations: defineCollection({ loader: translationLoader('timelines/*/*/*.md'), schema: timelineEntryTranslationSchema }),
 };

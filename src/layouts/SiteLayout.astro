@@ -14,24 +14,24 @@ interface Props {
 const { language, page } = Astro.props;
 const site = await validateContent();
 const localizedSite = (await siteText(site.text, language)).data;
-const label = localizedSite.navigation[page];
-const title = page === 'index' ? site.title : `${label} | ${site.title}`;
-const canonical = new URL(pageUrl(page, language), Astro.site);
-const structuredData = { '@context': 'https://schema.org/', '@type': 'WebSite', name: site.title, url: Astro.site?.href };
+const pageLabel = localizedSite.navigation[page];
+const documentTitle = page === 'index' ? site.title : `${pageLabel} | ${site.title}`;
+const canonicalUrl = new URL(pageUrl(page, language), Astro.site);
+const websiteStructuredData = { '@context': 'https://schema.org/', '@type': 'WebSite', name: site.title, url: Astro.site?.href };
 ---
 <!DOCTYPE html>
 <html lang={language}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <title>{documentTitle}</title>
     <meta name="description" content={localizedSite.descriptions[page]} />
-    <link rel="canonical" href={canonical} />
+    <link rel="canonical" href={canonicalUrl} />
     {languages.map((locale) => (
       <link rel="alternate" hreflang={locale} href={new URL(pageUrl(page, locale), Astro.site)} />
     ))}
     <link rel="icon" href={assetUrl(site.favicon)} type="image/x-icon" />
-    {page === 'index' && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')} />}
+    {page === 'index' && <script type="application/ld+json" set:html={JSON.stringify(websiteStructuredData).replace(/</g, '\\u003c')} />}
   </head>
   <body>
     <a class="skip-link" href="#main-content">{localizedSite.labels.skip}</a>

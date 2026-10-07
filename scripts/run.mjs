@@ -3,14 +3,21 @@ import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { safePath } from './workspace.mjs';
 
-const [tool, ...args] = process.argv.slice(2);
-const bins = { astro: '../node_modules/astro/bin/astro.mjs' };
-if (!(tool in bins)) throw new Error(`Outil inconnu : ${tool}`);
-const temp = safePath('.tools/tmp');
-mkdirSync(temp, { recursive: true });
-const child = spawn(process.execPath, [fileURLToPath(new URL(bins[tool], import.meta.url)), ...args], {
+const [toolName, ...toolArguments] = process.argv.slice(2);
+if (toolName !== 'astro') throw new Error(`Outil inconnu : ${toolName}`);
+
+const temporaryDirectory = safePath('.tools/tmp');
+const astroExecutable = fileURLToPath(new URL('../node_modules/astro/bin/astro.mjs', import.meta.url));
+mkdirSync(temporaryDirectory, { recursive: true });
+const childProcess = spawn(process.execPath, [astroExecutable, ...toolArguments], {
   stdio: 'inherit',
-  env: { ...process.env, ASTRO_TELEMETRY_DISABLED: '1', TMPDIR: temp, TEMP: temp, TMP: temp },
+  env: {
+    ...process.env,
+    ASTRO_TELEMETRY_DISABLED: '1',
+    TMPDIR: temporaryDirectory,
+    TEMP: temporaryDirectory,
+    TMP: temporaryDirectory,
+  },
 });
-child.on('error', (error) => { console.error(error); process.exitCode = 1; });
-child.on('exit', (code) => { process.exitCode = code ?? 1; });
+childProcess.on('error', (error) => { console.error(error); process.exitCode = 1; });
+childProcess.on('exit', (exitCode) => { process.exitCode = exitCode ?? 1; });

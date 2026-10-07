@@ -1,6 +1,6 @@
 # Modifier le contenu
 
-Les fichiers `metadata.yaml` décrivent la structure : ordre, médias, liens et références. Leur champ `text` désigne les traductions. Chaque fichier `fr.md` ou `en.md` contient **tous les textes d'une entrée** : les champs courts dans le frontmatter YAML, la description longue dans le corps Markdown. Aucun champ `en` ou `fr` ne figure dans les métadonnées.
+Les fichiers `metadata.yaml` décrivent la structure : année, ordre, médias, liens et références. Leur champ `text` désigne les traductions. Chaque fichier `fr.md` ou `en.md` contient **tous les textes d'une entrée** : les champs courts dans le frontmatter YAML, la description longue dans le corps Markdown. Aucun champ `en` ou `fr` ne figure dans les métadonnées.
 
 ## Ajouter un jeu ou un projet
 

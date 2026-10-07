@@ -9,6 +9,8 @@ interface NavigationGroup {
 interface Props { heading: string; groups: NavigationGroup[] }
 const { heading, groups } = Astro.props;
 const firstGroup = groups.find((group) => group.entries.length > 0);
+const firstEntry = firstGroup?.entries[0];
+const initialMobileLabel = firstEntry ? `${firstGroup.label} · ${firstEntry.title}` : firstGroup?.label;
 ---
 <aside class="portfolio-navigation">
   <nav class="portfolio-index" aria-label={heading}>
@@ -27,7 +29,7 @@ const firstGroup = groups.find((group) => group.entries.length > 0);
   <details class="portfolio-mobile-navigation">
     <summary>
       <span class="portfolio-mobile-label">{heading}</span>
-      <span class="portfolio-mobile-current">{firstGroup && `${firstGroup.label} · ${firstGroup.entries[0].title}`}</span>
+      <span class="portfolio-mobile-current">{initialMobileLabel}</span>
       <span class="portfolio-mobile-chevron" aria-hidden="true"></span>
     </summary>
     <nav aria-label={heading}>
@@ -46,49 +48,49 @@ const firstGroup = groups.find((group) => group.entries.length > 0);
 </aside>
 
 <script>
-  document.querySelectorAll<HTMLElement>('.portfolio-page').forEach((page) => {
-    const sections = Array.from(page.querySelectorAll<HTMLElement>('.portfolio-index-target'));
-    const links = Array.from(page.querySelectorAll<HTMLAnchorElement>('.portfolio-index a'));
-    const list = page.querySelector<HTMLOListElement>('.portfolio-index-list');
-    const mobileMenu = page.querySelector<HTMLDetailsElement>('.portfolio-mobile-navigation');
-    const mobileLinks = Array.from(page.querySelectorAll<HTMLAnchorElement>('.portfolio-mobile-list a'));
-    const mobileCurrent = page.querySelector<HTMLElement>('.portfolio-mobile-current');
-    let frame = 0;
+  document.querySelectorAll<HTMLElement>('.portfolio-page').forEach((contentPage) => {
+    const navigationTargets = Array.from(contentPage.querySelectorAll<HTMLElement>('.portfolio-index-target'));
+    const desktopLinks = Array.from(contentPage.querySelectorAll<HTMLAnchorElement>('.portfolio-index a'));
+    const desktopList = contentPage.querySelector<HTMLOListElement>('.portfolio-index-list');
+    const mobileMenu = contentPage.querySelector<HTMLDetailsElement>('.portfolio-mobile-navigation');
+    const mobileLinks = Array.from(contentPage.querySelectorAll<HTMLAnchorElement>('.portfolio-mobile-list a'));
+    const mobileCurrent = contentPage.querySelector<HTMLElement>('.portfolio-mobile-current');
+    let scheduledFrame = 0;
 
-    const update = () => {
-      frame = 0;
+    const updateActiveLink = () => {
+      scheduledFrame = 0;
       const readingLine = Math.min(window.innerHeight * .38, 280);
-      const found = sections.findIndex((section) => section.getBoundingClientRect().bottom > readingLine);
-      const active = found === -1 ? sections.length - 1 : found;
-      if (active < 0) return;
+      const nextTarget = navigationTargets.findIndex((target) => target.getBoundingClientRect().bottom > readingLine);
+      const activeIndex = nextTarget === -1 ? navigationTargets.length - 1 : nextTarget;
+      if (activeIndex < 0) return;
 
-      links.forEach((link, index) => {
-        if (index === active) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-      });
-      mobileLinks.forEach((link, index) => {
-        if (index === active) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-      });
-      if (mobileCurrent && mobileLinks[active]) {
-        const link = mobileLinks[active];
-        mobileCurrent.textContent = link.dataset.group ? `${link.dataset.group} · ${link.textContent}` : link.textContent;
+      for (const navigationLinks of [desktopLinks, mobileLinks]) {
+        navigationLinks.forEach((link, index) => {
+          if (index === activeIndex) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }
+      if (mobileCurrent && mobileLinks[activeIndex]) {
+        const activeLink = mobileLinks[activeIndex];
+        mobileCurrent.textContent = activeLink.dataset.group
+          ? `${activeLink.dataset.group} · ${activeLink.textContent}`
+          : activeLink.textContent;
       }
 
-      if (list && links[active] && list.scrollHeight > list.clientHeight) {
-        const link = links[active];
-        const linkTop = link.getBoundingClientRect().top - list.getBoundingClientRect().top + list.scrollTop;
-        list.scrollTop = linkTop - (list.clientHeight - link.clientHeight) / 2;
+      if (desktopList && desktopLinks[activeIndex] && desktopList.scrollHeight > desktopList.clientHeight) {
+        const activeLink = desktopLinks[activeIndex];
+        const relativeTop = activeLink.getBoundingClientRect().top - desktopList.getBoundingClientRect().top + desktopList.scrollTop;
+        desktopList.scrollTop = relativeTop - (desktopList.clientHeight - activeLink.clientHeight) / 2;
       }
     };
 
-    const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(update);
+    const scheduleUpdate = () => {
+      if (!scheduledFrame) scheduledFrame = requestAnimationFrame(updateActiveLink);
     };
 
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
-    window.addEventListener('hashchange', schedule);
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+    window.addEventListener('hashchange', scheduleUpdate);
     mobileMenu?.addEventListener('click', (event) => {
       const link = event.target instanceof Element
         ? event.target.closest<HTMLAnchorElement>('.portfolio-mobile-list a')
@@ -110,6 +112,6 @@ const firstGroup = groups.find((group) => group.entries.length > 0);
         mobileMenu.querySelector('summary')?.focus();
       }
     });
-    schedule();
+    scheduleUpdate();
   });
 </script>

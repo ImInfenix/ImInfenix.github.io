@@ -10,31 +10,34 @@ interface Props {
   technologiesLabel: string;
 }
 const { timeline, language, technologiesLabel } = Astro.props;
-const localized = (await timelineText(timeline, language)).data;
-const showOrganizationNames = timeline.id === 'experience';
-const organizations = await Promise.all(timeline.data.organizations.map(async (organization) => ({
+const translation = (await timelineText(timeline, language)).data;
+const isProfessionalExperience = timeline.id === 'experience';
+const localizedOrganizations = await Promise.all(timeline.data.organizations.map(async (organization) => ({
   ...organization,
   entries: await Promise.all(organization.entries.map(async (reference) => {
     const entry = await getEntry(reference);
     if (!entry) throw new Error(`${timeline.filePath} : expérience absente (${reference.id})`);
-    const translated = await timelineEntryText(entry, language);
-    return { ...entry, text: translated.data, Content: translated.body?.trim() ? translated.Content : undefined };
+    const entryTranslation = await timelineEntryText(entry, language);
+    return {
+      translation: entryTranslation.data,
+      Content: entryTranslation.body?.trim() ? entryTranslation.Content : undefined,
+    };
   })),
 })));
 ---
-<section class:list={['brick', 'timeline-section', { 'portfolio-index-target': !showOrganizationNames }]} id={timeline.id} aria-labelledby={`${timeline.id}-title`} tabindex={!showOrganizationNames ? -1 : undefined}>
-  <h2 id={`${timeline.id}-title`}>{localized.title}</h2>
+<section class:list={['brick', 'timeline-section', { 'portfolio-index-target': !isProfessionalExperience }]} id={timeline.id} aria-labelledby={`${timeline.id}-title`} tabindex={!isProfessionalExperience ? -1 : undefined}>
+  <h2 id={`${timeline.id}-title`}>{translation.title}</h2>
   <ol class="timeline">
-    {organizations.map((organization) => (
-      <li class:list={['timeline-card', { 'portfolio-index-target': showOrganizationNames }]} id={`${timeline.id}-${organization.id}`} tabindex={showOrganizationNames ? -1 : undefined}>
+    {localizedOrganizations.map((organization) => (
+      <li class:list={['timeline-card', { 'portfolio-index-target': isProfessionalExperience }]} id={`${timeline.id}-${organization.id}`} tabindex={isProfessionalExperience ? -1 : undefined}>
         <div class="timeline-content">
-          {showOrganizationNames && <h3 class="organization-name">{localized.organizations[organization.id]}</h3>}
-          {organization.logo && <img class="organization-logo" src={assetUrl(organization.logo)} alt={showOrganizationNames ? '' : localized.organizations[organization.id]} loading="lazy" />}
-          {organization.entries.map(({ text, Content }) => (
+          {isProfessionalExperience && <h3 class="organization-name">{translation.organizations[organization.id]}</h3>}
+          {organization.logo && <img class="organization-logo" src={assetUrl(organization.logo)} alt={isProfessionalExperience ? '' : translation.organizations[organization.id]} loading="lazy" />}
+          {organization.entries.map(({ translation: entryTranslation, Content }) => (
             <div class="timeline-entry">
-              {showOrganizationNames ? <h4>{text.period}</h4> : <h3>{text.period}</h3>}
-              {text.duration && <p class="duration">{text.duration}</p>}
-              {text.role && <p>{text.role}</p>}
+              {isProfessionalExperience ? <h4>{entryTranslation.period}</h4> : <h3>{entryTranslation.period}</h3>}
+              {entryTranslation.duration && <p class="duration">{entryTranslation.duration}</p>}
+              {entryTranslation.role && <p>{entryTranslation.role}</p>}
               {Content && <div class="prose"><Content /></div>}
             </div>
           ))}

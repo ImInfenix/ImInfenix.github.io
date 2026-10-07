@@ -5,21 +5,28 @@ import Media from './Media.astro';
 
 interface Props { entry: PortfolioEntry; language: Language }
 const { entry, language } = Astro.props;
-const item = entry.data;
-const localized = await portfolioText(entry, language);
-const Content = localized.Content;
+const metadata = entry.data;
+const translation = await portfolioText(entry, language);
+const Content = translation.Content;
+const localizedLinks = metadata.links.map((link) => {
+  const translatedLink = translation.data.links?.[link.id];
+  if (!translatedLink) throw new Error(`${entry.id} : libellé absent (${link.id})`);
+  return link.type === 'link'
+    ? { type: 'link' as const, href: translatedLink.href ?? link.href, text: translatedLink.text }
+    : { type: 'badge' as const, src: link.src, text: translatedLink.text };
+});
 ---
-<section class:list={['project', 'portfolio-index-target', { 'project-with-media': !!item.media }]} id={entry.id} aria-labelledby={`${entry.id}-title`} tabindex="-1">
-  <h3 id={`${entry.id}-title`}>{localized.data.title}</h3>
-  {item.media && <Media media={item.media} caption={localized.data.media!.caption} alt={localized.data.media?.alt} />}
+<section class:list={['project', 'portfolio-index-target', { 'project-with-media': !!metadata.media }]} id={entry.id} aria-labelledby={`${entry.id}-title`} tabindex="-1">
+  <h3 id={`${entry.id}-title`}>{translation.data.title}</h3>
+  {metadata.media && <Media media={metadata.media} caption={translation.data.media!.caption} alt={translation.data.media?.alt} />}
   <div class="prose"><Content /></div>
-  {item.links.length > 0 && (
+  {localizedLinks.length > 0 && (
     <ul class="project-links">
-      {item.links.map((link) => (
+      {localizedLinks.map((link) => (
         <li>
           {link.type === 'link'
-            ? <a href={localized.data.links![link.id].href ?? link.href} class="box-link" target="_blank" rel="noopener noreferrer">{localized.data.links![link.id].text}</a>
-            : <img src={link.src} alt={localized.data.links![link.id].text} loading="lazy" />}
+            ? <a href={link.href} class="box-link" target="_blank" rel="noopener noreferrer">{link.text}</a>
+            : <img src={link.src} alt={link.text} loading="lazy" />}
         </li>
       ))}
     </ul>

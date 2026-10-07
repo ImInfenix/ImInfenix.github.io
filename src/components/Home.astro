@@ -7,14 +7,14 @@ import '../styles/resume.css';
 
 interface Props { language: Language }
 const { language } = Astro.props;
-const data = await settings('home');
-const localized = await homeText(data.text, language);
-const Content = (await render(localized)).Content;
+const homeSettings = await settings('home');
+const translation = await homeText(homeSettings.text, language);
+const Content = (await render(translation)).Content;
 ---
 <section class="brick home">
-  <h1>{localized.data.heading}</h1>
+  <h1>{translation.data.heading}</h1>
   <Content />
   <div class="resume">
-    <a href={assetUrl(localized.data.resume.document)}>{localized.data.resume.label}<span aria-hidden="true"> ↗</span></a>
+    <a href={assetUrl(translation.data.resume.document)}>{translation.data.resume.label}<span aria-hidden="true"> ↗</span></a>
   </div>
 </section>

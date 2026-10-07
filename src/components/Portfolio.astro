@@ -7,14 +7,16 @@ import SectionNavigation from './SectionNavigation.astro';
 
 interface Props { collection: 'projects' | 'games'; language: Language }
 const { collection, language } = Astro.props;
-const items = (await getCollection(collection)).sort((a, b) => b.data.year - a.data.year || a.data.order - b.data.order);
-const indexItems = await Promise.all(items.map(async (item) => ({
+const portfolioItems = (await getCollection(collection)).sort((first, second) =>
+  second.data.year - first.data.year || first.data.order - second.data.order
+);
+const localizedItems = await Promise.all(portfolioItems.map(async (item) => ({
   item,
   title: (await portfolioText(item, language)).data.title,
 })));
-const years = [...new Set(items.map((item) => item.data.year))];
-const groups = years.map((year) => ({ year, entries: indexItems.filter(({ item }) => item.data.year === year) }));
-const navigationGroups = groups.map(({ year, entries }) => ({
+const years = [...new Set(portfolioItems.map((item) => item.data.year))];
+const yearGroups = years.map((year) => ({ year, entries: localizedItems.filter(({ item }) => item.data.year === year) }));
+const navigationGroups = yearGroups.map(({ year, entries }) => ({
   label: String(year),
   entries: entries.map(({ item, title }) => ({ id: item.id, title })),
 }));
@@ -23,9 +25,9 @@ const heading = (await siteText(site.text, language)).data.navigation[collection
 ---
 <div class="portfolio-page">
   <SectionNavigation heading={heading} groups={navigationGroups} />
-  <div class="projects">
+  <div class="portfolio-content">
     <h1 class="visually-hidden">{heading}</h1>
-    {groups.map(({ year, entries }) => (
+    {yearGroups.map(({ year, entries }) => (
       <section class="portfolio-year-section" aria-labelledby={`year-${year}`}>
         <h2 id={`year-${year}`} class="portfolio-year-heading">{year}</h2>
         {entries.map(({ item }) => <PortfolioItem entry={item} language={language} />)}
