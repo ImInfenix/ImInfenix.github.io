@@ -1,0 +1,25 @@
+---
+import '../styles/back-to-top.css';
+
+interface Props { label: string }
+const { label } = Astro.props;
+---
+<button class="back-to-top" type="button" aria-label={label} hidden>
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="m5 15 7-7 7 7" />
+  </svg>
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.back-to-top');
+  if (button) {
+    const updateVisibility = () => { button.hidden = window.scrollY <= 0; };
+    button.addEventListener('click', () => {
+      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
+      window.scrollTo({ top: 0, behavior });
+    });
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    window.addEventListener('pageshow', updateVisibility);
+    updateVisibility();
+  }
+</script>

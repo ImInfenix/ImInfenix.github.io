@@ -1,0 +1,33 @@
+.back-to-top {
+  position: fixed;
+  z-index: 15;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  border: 1px solid rgba(245, 155, 96, .5);
+  border-radius: .8rem;
+  color: var(--secondary-color);
+  background: var(--surface-raised);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .3);
+  cursor: pointer;
+  transition: color .2s ease, background-color .2s ease, transform .2s ease;
+}
+
+.back-to-top[hidden] {
+  display: none;
+}
+
+.back-to-top:hover {
+  color: var(--background-start);
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 4px;
+}

@@ -19,4 +19,5 @@ labels:
   socials: Social profiles
   skip: Skip to content
   technologies: Technologies used
+  backToTop: Back to top
 ---

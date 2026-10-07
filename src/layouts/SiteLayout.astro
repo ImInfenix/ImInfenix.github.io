@@ -1,6 +1,7 @@
 ---
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
 import { siteText, validateContent } from '../lib/content';
 import { assetUrl, pageUrl } from '../lib/site';
 import { languages, type Language, type Page } from '../schemas';
@@ -38,6 +39,7 @@ const structuredData = { '@context': 'https://schema.org/', '@type': 'WebSite', 
     <main id="main-content" class:list={{ 'home-page': page === 'index' }} tabindex="-1">
       <slot />
     </main>
+    {page !== 'index' && <BackToTop label={localizedSite.labels.backToTop} />}
     <Footer site={site} language={language} />
   </body>
 </html>

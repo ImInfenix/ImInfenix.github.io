@@ -64,7 +64,7 @@ export const siteTranslationSchema = z.object({
   navigation: z.object({ index: text, games: text, projects: text, about: text }).strict(),
   descriptions: z.object({ index: text, games: text, projects: text, about: text }).strict(),
   socials: z.record(key, text),
-  labels: z.object({ navigation: text, languages: text, socials: text, skip: text, technologies: text }).strict(),
+  labels: z.object({ navigation: text, languages: text, socials: text, skip: text, technologies: text, backToTop: text }).strict(),
 }).strict();
 
 export const homeTranslationSchema = z.object({
