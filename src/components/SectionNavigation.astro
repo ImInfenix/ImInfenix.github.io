@@ -1,0 +1,115 @@
+---
+import '../styles/project.css';
+
+interface NavigationGroup {
+  label: string;
+  href?: string;
+  entries: { id: string; title: string }[];
+}
+interface Props { heading: string; groups: NavigationGroup[] }
+const { heading, groups } = Astro.props;
+const firstGroup = groups.find((group) => group.entries.length > 0);
+---
+<aside class="portfolio-navigation">
+  <nav class="portfolio-index" aria-label={heading}>
+    <p class="portfolio-index-heading">{heading}</p>
+    <ol class="portfolio-index-list">
+      {groups.map(({ label, href, entries }) => (
+        <li class="portfolio-index-group">
+          {href ? <a class="portfolio-index-group-label portfolio-index-group-link" href={href}>{label}</a> : <span class="portfolio-index-group-label">{label}</span>}
+          {entries.length > 0 && <ol>
+            {entries.map(({ id, title }) => <li><a href={`#${id}`}>{title}</a></li>)}
+          </ol>}
+        </li>
+      ))}
+    </ol>
+  </nav>
+  <details class="portfolio-mobile-navigation">
+    <summary>
+      <span class="portfolio-mobile-label">{heading}</span>
+      <span class="portfolio-mobile-current">{firstGroup && `${firstGroup.label} · ${firstGroup.entries[0].title}`}</span>
+      <span class="portfolio-mobile-chevron" aria-hidden="true"></span>
+    </summary>
+    <nav aria-label={heading}>
+      <ol class="portfolio-mobile-list">
+        {groups.map(({ label, href, entries }) => (
+          <li class="portfolio-index-group">
+            {href ? <a class="portfolio-index-group-label portfolio-index-group-link" href={href}>{label}</a> : <span class="portfolio-index-group-label">{label}</span>}
+            {entries.length > 0 && <ol>
+              {entries.map(({ id, title }) => <li><a href={`#${id}`} data-group={label}>{title}</a></li>)}
+            </ol>}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </details>
+</aside>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.portfolio-page').forEach((page) => {
+    const sections = Array.from(page.querySelectorAll<HTMLElement>('.portfolio-index-target'));
+    const links = Array.from(page.querySelectorAll<HTMLAnchorElement>('.portfolio-index a'));
+    const list = page.querySelector<HTMLOListElement>('.portfolio-index-list');
+    const mobileMenu = page.querySelector<HTMLDetailsElement>('.portfolio-mobile-navigation');
+    const mobileLinks = Array.from(page.querySelectorAll<HTMLAnchorElement>('.portfolio-mobile-list a'));
+    const mobileCurrent = page.querySelector<HTMLElement>('.portfolio-mobile-current');
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const readingLine = Math.min(window.innerHeight * .38, 280);
+      const found = sections.findIndex((section) => section.getBoundingClientRect().bottom > readingLine);
+      const active = found === -1 ? sections.length - 1 : found;
+      if (active < 0) return;
+
+      links.forEach((link, index) => {
+        if (index === active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      mobileLinks.forEach((link, index) => {
+        if (index === active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      if (mobileCurrent && mobileLinks[active]) {
+        const link = mobileLinks[active];
+        mobileCurrent.textContent = link.dataset.group ? `${link.dataset.group} · ${link.textContent}` : link.textContent;
+      }
+
+      if (list && links[active] && list.scrollHeight > list.clientHeight) {
+        const link = links[active];
+        const linkTop = link.getBoundingClientRect().top - list.getBoundingClientRect().top + list.scrollTop;
+        list.scrollTop = linkTop - (list.clientHeight - link.clientHeight) / 2;
+      }
+    };
+
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    window.addEventListener('hashchange', schedule);
+    mobileMenu?.addEventListener('click', (event) => {
+      const link = event.target instanceof Element
+        ? event.target.closest<HTMLAnchorElement>('.portfolio-mobile-list a')
+        : null;
+      if (link) {
+        const target = document.getElementById(link.hash.slice(1));
+        mobileMenu.open = false;
+        requestAnimationFrame(() => target?.focus({ preventScroll: true }));
+      }
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (mobileMenu?.open && event.target instanceof Node && !mobileMenu.contains(event.target)) {
+        mobileMenu.open = false;
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && mobileMenu?.open) {
+        mobileMenu.open = false;
+        mobileMenu.querySelector('summary')?.focus();
+      }
+    });
+    schedule();
+  });
+</script>

@@ -1,37 +1,44 @@
-.about-intro {
-  max-width: 760px;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
+.about-header {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
   border: 1px solid var(--stroke);
   border-radius: 1.25rem;
   background: radial-gradient(circle at 50% 0, rgba(245, 155, 96, .16), transparent 70%), var(--surface);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, .12);
   text-align: center;
 }
 
-.about-intro p {
+.about-contact {
   margin: 0;
-  font-size: clamp(1.05rem, 2vw, 1.4rem);
-  font-weight: 700;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.5;
 }
 
-.about-intro .contact {
+.about-contact a {
   color: var(--secondary-color);
   text-decoration: underline;
   text-decoration-color: rgba(245, 155, 96, .5);
   text-underline-offset: .18em;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
-.about-intro .contact:hover {
+.about-contact a:hover {
   color: #ffc194;
   text-decoration-color: currentColor;
 }
 
+.about-content .timeline-section {
+  width: 100%;
+}
+
 .timeline-section {
-  margin-bottom: clamp(3rem, 7vw, 5rem);
+  margin-bottom: clamp(2.75rem, 6vw, 4rem);
+  scroll-margin-top: 8rem;
 }
 
 .timeline-section > h2 {
-  margin: 0 0 2rem;
+  margin: 0 0 1.5rem;
   font-size: clamp(1.8rem, 3.5vw, 2.7rem);
   font-weight: 800;
   letter-spacing: -.03em;
@@ -58,8 +65,9 @@
 .timeline-card {
   position: relative;
   width: 50%;
-  padding: 0 35px;
-  margin-bottom: 1.5rem;
+  padding: 0 28px;
+  margin-bottom: 1.2rem;
+  scroll-margin-top: 8rem;
 }
 
 .timeline-card:nth-child(odd) {
@@ -113,7 +121,7 @@
 
 .timeline-content {
   position: relative;
-  padding: clamp(1.25rem, 2.5vw, 1.8rem);
+  padding: clamp(1.15rem, 2vw, 1.55rem);
   border: 1px solid var(--stroke);
   border-radius: 1rem;
   background: var(--surface);
@@ -203,6 +211,14 @@
 }
 
 @media (max-width: 640px) {
+  .timeline-section {
+    scroll-margin-top: 10rem;
+  }
+
+  .timeline-card {
+    scroll-margin-top: 10rem;
+  }
+
   .organization-logo {
     max-width: 65%;
   }

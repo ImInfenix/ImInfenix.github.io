@@ -21,11 +21,11 @@ const organizations = await Promise.all(timeline.data.organizations.map(async (o
   })),
 })));
 ---
-<section class="brick timeline-section" aria-labelledby={timeline.id}>
-  <h2 id={timeline.id}>{localized.title}</h2>
+<section class:list={['brick', 'timeline-section', { 'portfolio-index-target': !showOrganizationNames }]} id={timeline.id} aria-labelledby={`${timeline.id}-title`} tabindex={!showOrganizationNames ? -1 : undefined}>
+  <h2 id={`${timeline.id}-title`}>{localized.title}</h2>
   <ol class="timeline">
     {organizations.map((organization) => (
-      <li class="timeline-card">
+      <li class:list={['timeline-card', { 'portfolio-index-target': showOrganizationNames }]} id={`${timeline.id}-${organization.id}`} tabindex={showOrganizationNames ? -1 : undefined}>
         <div class="timeline-content">
           {organization.logo && <img class="organization-logo" src={assetUrl(organization.logo)} alt={localized.organizations[organization.id]} loading="lazy" />}
           {organization.entries.map(({ text, Content }) => (
