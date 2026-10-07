@@ -1,5 +1,5 @@
 ---
-title: 2045 (2020)
+title: "2045"
 media:
   alt: Escaping the lights to get liberty back
   caption: Escaping the lights to get liberty back

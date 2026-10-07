@@ -1,5 +1,5 @@
 ---
-title: Pop-Up Run (2019)
+title: Pop-Up Run
 media:
   alt: Travelling in the city of the Internet
   caption: Travelling in the city of the Internet

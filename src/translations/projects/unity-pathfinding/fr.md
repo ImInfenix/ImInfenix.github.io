@@ -1,5 +1,5 @@
 ---
-title: Unity A* Pathfinding dans un environnement construit en temps réel (2021)
+title: Unity A* Pathfinding dans un environnement construit en temps réel
 media:
   caption: Vidéo de démonstration
 ---

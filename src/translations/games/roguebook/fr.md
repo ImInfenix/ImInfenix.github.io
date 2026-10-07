@@ -1,5 +1,5 @@
 ---
-title: Roguebook (2021)
+title: Roguebook
 media:
   caption: Trailer de lancement
 links:

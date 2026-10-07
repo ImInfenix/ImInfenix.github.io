@@ -1,5 +1,5 @@
 ---
-title: "Stellaris: Astral Planes (2023)"
+title: "Stellaris: Astral Planes"
 media:
   caption: "Stellaris: Astral Planes Release Trailer"
 links:

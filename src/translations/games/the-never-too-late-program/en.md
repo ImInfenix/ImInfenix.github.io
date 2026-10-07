@@ -1,5 +1,5 @@
 ---
-title: The Never Too Late Program (2021)
+title: The Never Too Late Program
 media:
   alt: A factory where the player carries objects
   caption: A factory where the player carries objects

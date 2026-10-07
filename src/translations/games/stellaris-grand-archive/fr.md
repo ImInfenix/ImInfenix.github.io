@@ -1,5 +1,5 @@
 ---
-title: "Stellaris: Grand Archive (2024)"
+title: "Stellaris: Grand Archive"
 media:
   caption: "Trailer de lancement de Stellaris: Grand Archive"
 links:

@@ -1,5 +1,5 @@
 ---
-title: Initiation à la génération procédurale (2019)
+title: Initiation à la génération procédurale
 media:
   alt: Une carte en grille générée procéduralement
   caption: Une carte en grille générée procéduralement

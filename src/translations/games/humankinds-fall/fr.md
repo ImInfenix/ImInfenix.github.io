@@ -1,5 +1,5 @@
 ---
-title: Humankind's Fall (2021)
+title: Humankind's Fall
 media:
   caption: Trailer du jeu
 links:

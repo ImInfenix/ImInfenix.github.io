@@ -1,5 +1,5 @@
 ---
-title: 2045 (2020)
+title: "2045"
 media:
   alt: Échapper aux lumières pour retrouver sa liberté
   caption: Échapper aux lumières pour retrouver sa liberté

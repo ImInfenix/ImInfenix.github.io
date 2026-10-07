@@ -1,5 +1,5 @@
 ---
-title: The Never Too Late Program (2021)
+title: The Never Too Late Program
 media:
   alt: Une usine où le joueur transporte des objets
   caption: Une usine où le joueur transporte des objets

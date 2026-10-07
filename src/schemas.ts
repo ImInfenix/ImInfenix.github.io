@@ -32,6 +32,7 @@ export const aboutSchema = z.object({
 }).strict();
 
 export const portfolioSchema = ({ image }: SchemaContext) => z.object({
+  year: z.number().int().min(1900).max(2100),
   order: z.number().int().nonnegative(),
   text: translationReference,
   media: z.discriminatedUnion('type', [

@@ -1,5 +1,5 @@
 ---
-title: Snake (2019)
+title: Snake
 media:
   alt: An original production
   caption: An original production

@@ -1,5 +1,5 @@
 ---
-title: Currency tracker (2020 - 2021)
+title: Currency tracker
 media:
   alt: Sur la droite, des informations additionnelles pour des monnaies du jeu (quantité possédée)
   caption: Sur la droite, des informations additionnelles pour des monnaies du jeu (quantité possédée)

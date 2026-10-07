@@ -42,6 +42,25 @@
   scrollbar-width: thin;
 }
 
+.portfolio-index-list > li + li {
+  margin-top: 1rem;
+}
+
+.portfolio-year-group > ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.portfolio-year-label {
+  display: block;
+  padding: .35rem .55rem;
+  color: var(--secondary-color);
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+
 .portfolio-index-list a {
   display: block;
   padding: .65rem .55rem;
@@ -78,6 +97,28 @@
   margin: 0 0 clamp(2rem, 5vw, 4rem);
 }
 
+.portfolio-year-section + .portfolio-year-section {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.portfolio-year-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.25rem;
+  color: var(--secondary-color);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 800;
+  scroll-margin-top: 10rem;
+}
+
+.portfolio-year-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--stroke);
+}
+
 .project {
   margin: 0 0 1.5rem;
   padding: clamp(1.5rem, 3.5vw, 2.5rem);
@@ -95,7 +136,7 @@
   align-items: start;
 }
 
-.project h2 {
+.project h3 {
   grid-column: 1 / -1;
   margin: 0 0 1.4rem;
   color: var(--text-primary);
@@ -106,7 +147,7 @@
   overflow-wrap: anywhere;
 }
 
-.project h2::before {
+.project h3::before {
   content: "";
   display: inline-block;
   width: .6rem;
@@ -262,6 +303,10 @@
     list-style: none;
     scrollbar-color: var(--secondary-color) transparent;
     scrollbar-width: thin;
+  }
+
+  .portfolio-mobile-list > li + li {
+    margin-top: .65rem;
   }
 
   .portfolio-mobile-list a {

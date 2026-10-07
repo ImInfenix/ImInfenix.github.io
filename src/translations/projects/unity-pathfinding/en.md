@@ -1,5 +1,5 @@
 ---
-title: Unity A* Pathfinding in real-time built world (2021)
+title: Unity A* Pathfinding in real-time built world
 media:
   caption: Demonstration video
 ---

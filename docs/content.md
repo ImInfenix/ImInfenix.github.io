@@ -4,7 +4,7 @@ Les fichiers `metadata.yaml` décrivent la structure : ordre, médias, liens et 
 
 ## Ajouter un jeu ou un projet
 
-Créer l'entrée avec `npm run content:new -- game mon-jeu` ou `npm run content:new -- project mon-projet`. La commande crée ces fichiers et refuse d'écraser une entrée ou une traduction existante :
+Créer l'entrée avec `npm run content:new -- game mon-jeu 2026` ou `npm run content:new -- project mon-projet 2026`. L'année est facultative et vaut l'année courante si elle est omise. La commande crée ces fichiers et refuse d'écraser une entrée ou une traduction existante :
 
 ```text
 src/content/games/mon-jeu/metadata.yaml
@@ -15,6 +15,7 @@ src/translations/games/mon-jeu/fr.md
 Même organisation sous `projects/`. Le nom du dossier est l'identifiant stable. `text` relie les métadonnées au dossier de traduction :
 
 ```yaml
+year: 2026
 order: 10
 text: games/mon-jeu
 media:
@@ -30,7 +31,7 @@ Exemple de `src/translations/games/mon-jeu/fr.md` :
 
 ```md
 ---
-title: Mon jeu (2026)
+title: Mon jeu
 media:
   alt: Capture du niveau principal
   caption: Le premier niveau
@@ -44,7 +45,7 @@ Description du jeu en **Markdown**, avec des paragraphes, listes et liens.
 
 Le fichier anglais a les mêmes clés et son propre texte. Les liens, badges et organisations possèdent des identifiants stables : leurs traductions restent associées lorsque leur ordre change. Un lien peut aussi avoir une URL différente selon la langue : omettre `href` dans `metadata.yaml` et l'ajouter dans l'entrée correspondante de chaque traduction.
 
-Les éléments sont triés par `order` croissant, unique dans chaque collection. Espacer les valeurs de 10 permet d'insérer une entrée. Pour supprimer un contenu, supprimer ses métadonnées **et** son dossier de traduction.
+Les éléments sont regroupés par `year` décroissant, puis triés par `order` croissant dans chaque année. `order` reste unique dans chaque collection. Espacer les valeurs de 10 permet d'insérer une entrée. Le titre traduit ne contient pas l'année : elle apparaît dans le titre de groupe et le sommaire. Pour un contenu couvrant plusieurs années, utiliser l'année de fin dans `year`. Pour supprimer un contenu, supprimer ses métadonnées **et** son dossier de traduction.
 
 ## Médias et ressources
 

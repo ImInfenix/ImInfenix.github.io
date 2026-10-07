@@ -3,10 +3,11 @@ import { join } from 'node:path';
 import { parse, stringify } from 'yaml';
 import { safePath } from './workspace.mjs';
 
-const [kind, slug, ...extra] = process.argv.slice(2);
+const [kind, slug, yearInput, ...extra] = process.argv.slice(2);
 const collections = { game: 'games', project: 'projects' };
-if (!Object.hasOwn(collections, kind) || !slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || extra.length) {
-  console.error('Usage : npm run content:new -- <game|project> <identifiant-en-minuscules>');
+const year = yearInput === undefined ? new Date().getFullYear() : Number(yearInput);
+if (!Object.hasOwn(collections, kind) || !slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || !Number.isInteger(year) || year < 1900 || year > 2100 || extra.length) {
+  console.error('Usage : npm run content:new -- <game|project> <identifiant-en-minuscules> [année]');
   process.exit(1);
 }
 
@@ -28,7 +29,7 @@ const orders = readdirSync(base, { withFileTypes: true })
 const order = Math.max(0, ...orders) + 10;
 if (!Number.isSafeInteger(order)) throw new Error('Aucun ordre entier disponible.');
 const files = {
-  'metadata.yaml': stringify({ order, text: `${collections[kind]}/${slug}`, links: [] }, { lineWidth: 0 }),
+  'metadata.yaml': stringify({ year, order, text: `${collections[kind]}/${slug}`, links: [] }, { lineWidth: 0 }),
 };
 const localizedFiles = {
   'en.md': `---\n${stringify({ title: slug }, { lineWidth: 0 })}---\nDescribe your project here.\n`,

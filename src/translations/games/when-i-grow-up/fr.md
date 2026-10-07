@@ -1,5 +1,5 @@
 ---
-title: When I Grow Up (2021)
+title: When I Grow Up
 media:
   alt: Le personnage du jeu
   caption: Le personnage du jeu

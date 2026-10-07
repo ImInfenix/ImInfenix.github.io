@@ -1,5 +1,5 @@
 ---
-title: Procedural Generation Initiation (2019)
+title: Procedural Generation Initiation
 media:
   alt: A grid map procedurally generated
   caption: A grid map procedurally generated

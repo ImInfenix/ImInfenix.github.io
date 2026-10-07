@@ -1,5 +1,5 @@
 ---
-title: Tower Forge (2020)
+title: Tower Forge
 media:
   alt: Aliens are trying to enter dwarves' fortress
   caption: Aliens are trying to enter dwarves' fortress

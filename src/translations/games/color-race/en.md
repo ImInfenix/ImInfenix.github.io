@@ -1,5 +1,5 @@
 ---
-title: Color Race (2020)
+title: Color Race
 media:
   alt: Changing one's color to get through obstacles
   caption: Changing self color to get through obstacles

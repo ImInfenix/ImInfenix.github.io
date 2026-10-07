@@ -1,5 +1,5 @@
 ---
-title: Unity CI Test Project (2021)
+title: Unity CI Test Project
 links:
   link-1:
     text: GitHub Repository

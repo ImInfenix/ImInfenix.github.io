@@ -1,5 +1,5 @@
 ---
-title: Tower Forge (2020)
+title: Tower Forge
 media:
   alt: Les aliens essayent d'envahir la forteresse naine
   caption: Les aliens essayent d'envahir la forteresse naine
